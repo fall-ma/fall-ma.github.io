@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多品类游戏体验 | 马铭远作品集</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+        .navbar__brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1rem; color: #2d3748; }
+        .navbar__brand-icon { font-size: 1.3rem; }
+        .navbar__links { display: flex; align-items: center; gap: 28px; list-style: none; }
+        .navbar__links a { font-size: 0.88rem; font-weight: 500; color: #4a5568; transition: color 0.2s; }
+        .navbar__links a:hover { color: #2d3748; }
+        .article-hero { padding-top: 56px; background: #2c3e50; position: relative; overflow: hidden; }
+        .article-hero__deco { position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); font-size: clamp(5rem, 14vw, 12rem); font-weight: 900; color: rgba(255,255,255,0.04); white-space: nowrap; pointer-events: none; }
+        .article-hero__inner { max-width: 1200px; margin: 0 auto; padding: 50px 40px 70px; display: grid; grid-template-columns: 260px 1fr; gap: 50px; align-items: start; position: relative; }
+        .profile-mini { background: #fff; border-radius: 12px; box-shadow: 0 8px 40px rgba(0,0,0,0.15); padding: 28px 20px 22px; text-align: center; }
+        .profile-mini__avatar { width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 12px; background: linear-gradient(135deg, #a18cd1, #fbc2eb); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; box-shadow: 0 4px 15px rgba(161,140,209,0.3); }
+        .profile-mini__name { font-size: 1.05rem; font-weight: 700; color: #2d3748; margin-bottom: 4px; }
+        .profile-mini__sub { font-size: 0.75rem; color: #a0aec0; font-family: 'JetBrains Mono', monospace; margin-bottom: 10px; }
+        .profile-mini__bio { font-size: 0.78rem; color: #718096; line-height: 1.5; margin-bottom: 14px; }
+        .profile-mini__social { display: flex; justify-content: center; gap: 12px; margin-bottom: 16px; }
+        .profile-mini__social a { width: 30px; height: 30px; border-radius: 50%; background: #f7fafc; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #4a5568; transition: all 0.2s; }
+        .profile-mini__social a:hover { background: #2c3e50; color: #fff; border-color: #2c3e50; }
+        .profile-mini__contact { text-align: left; border-top: 1px solid #edf2f7; padding-top: 12px; font-size: 0.72rem; }
+        .profile-mini__contact div { display: flex; padding: 3px 0; }
+        .profile-mini__contact .label { color: #a0aec0; width: 50px; flex-shrink: 0; }
+        .profile-mini__contact .value { color: #4a5568; font-weight: 500; }
+        .profile-mini__skills { text-align: left; border-top: 1px solid #edf2f7; padding-top: 12px; margin-top: 12px; }
+        .profile-mini__skills-title { font-size: 0.68rem; color: #a0aec0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+        .profile-mini__tags { display: flex; flex-wrap: wrap; gap: 4px; }
+        .profile-mini__tags span { padding: 2px 8px; border-radius: 100px; font-size: 0.65rem; font-weight: 500; background: #edf2f7; color: #4a5568; }
+        .profile-mini__tags span.primary { background: #a18cd1; color: #fff; }
+        .article-header { padding-top: 10px; }
+        .article-header__label { font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+        .article-header__title { font-size: clamp(1.4rem, 2.8vw, 2rem); font-weight: 700; color: #fff; line-height: 1.4; margin-bottom: 16px; }
+        .article-header__breadcrumb { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 100px; font-size: 0.72rem; font-family: 'JetBrains Mono', monospace; color: rgba(255,255,255,0.6); }
+        .article-header__meta { display: flex; gap: 24px; margin-top: 20px; font-size: 0.78rem; color: rgba(255,255,255,0.55); }
+        .scroll-indicator { position: absolute; right: -20px; top: 50%; transform: translateY(-50%); writing-mode: vertical-rl; font-size: 0.68rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.35); text-transform: uppercase; font-family: 'JetBrains Mono', monospace; animation: scrollFloat 2.5s ease-in-out infinite; }
+        @keyframes scrollFloat { 0%,100%{transform:translateY(-50%)} 50%{transform:translateY(-46%)} }
+        .article-body { max-width: 1200px; margin: 0 auto; padding: 50px 40px 80px; }
+        .article-content { max-width: 780px; margin-left: 310px; font-size: 0.95rem; line-height: 1.8; color: #4a5568; }
+        .article-content h2 { font-size: 1.3rem; font-weight: 700; color: #2d3748; margin: 36px 0 14px; padding-bottom: 8px; border-bottom: 2px solid #edf2f7; }
+        .article-content h3 { font-size: 1.1rem; font-weight: 700; color: #2d3748; margin: 24px 0 10px; }
+        .article-content p { margin-bottom: 14px; }
+        .article-content ul { padding-left: 20px; margin-bottom: 16px; }
+        .article-content li { margin-bottom: 8px; }
+        .article-content strong { color: #2d3748; }
+        .highlight-box { background: #f7fafc; border-left: 4px solid #a18cd1; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 20px 0; font-size: 0.88rem; color: #4a5568; }
+        .footer { text-align: center; padding: 36px 20px; font-size: 0.78rem; color: #a0aec0; border-top: 1px solid #edf2f7; background: #fff; }
+        @media (max-width: 900px) { .article-hero__inner { grid-template-columns: 1fr; padding: 30px 20px 50px; gap: 24px; } .profile-mini { max-width: 300px; margin: 0 auto; } .article-content { margin-left: 0; } .article-body { padding: 30px 20px 60px; } .navbar { padding: 0 20px; } .scroll-indicator { display: none; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="navbar__brand"><span class="navbar__brand-icon">&#127918;</span><span>MA_PORTFOLIO</span></a>
+        <ul class="navbar__links"><li><a href="../index.html">首页</a></li><li><a href="../index.html#works">作品</a></li><li><a href="../index.html#experience">经历</a></li><li><a href="../index.html#contact">联系</a></li></ul>
+    </nav>
+    <section class="article-hero">
+        <div class="article-hero__deco">GAMING</div>
+        <div class="article-hero__inner">
+            <div class="profile-mini">
+                <div class="profile-mini__avatar">&#128126;</div>
+                <h2 class="profile-mini__name">马铭远</h2>
+                <p class="profile-mini__sub">Game Planner / Creator</p>
+                <p class="profile-mini__bio">因为我们的存在，世界发生了小小的改变。</p>
+                <div class="profile-mini__social"><a href="https://space.bilibili.com/" target="_blank">&#127909;</a><a href="#">&#128187;</a><a href="#">&#128172;</a><a href="mailto:2275390554@qq.com">&#9993;</a></div>
+                <div class="profile-mini__contact">
+                    <div><span class="label">微信:</span><span class="value">mamyhhh</span></div>
+                    <div><span class="label">QQ:</span><span class="value">2275390554</span></div>
+                    <div><span class="label">邮箱:</span><span class="value">2275390554@qq.com</span></div>
+                </div>
+                <div class="profile-mini__skills">
+                    <p class="profile-mini__skills-title">游戏品类</p>
+                    <div class="profile-mini__tags"><span class="primary">MOBA</span><span>FPS</span><span>策略</span><span>沙盒</span><span>动作</span><span>体育</span></div>
+                </div>
+            </div>
+            <div class="article-header">
+                <p class="article-header__label">NEWS LETTER</p>
+                <h1 class="article-header__title">多品类游戏深度体验 - 2000h+ 英雄联盟</h1>
+                <div class="article-header__breadcrumb">HOME / Gaming / Experience</div>
+                <div class="article-header__meta"><span>&#127918; 10年+游戏经历</span><span>&#128126; 全品类覆盖</span></div>
+                <span class="scroll-indicator">SCROLL DOWN</span>
+            </div>
+        </div>
+    </section>
+    <div class="article-body">
+        <div class="article-content">
+            <h2>《多品类游戏深度体验》</h2>
+            <h3>重度体验（500h+）</h3>
+            <ul>
+                <li><strong>英雄联盟</strong> — 2000h+，10年电竞赛事观赛经验</li>
+                <li><strong>Minecraft</strong> — 沙盒创造，关卡设计启蒙</li>
+                <li><strong>火影忍者 / 王者荣耀 / 云顶之弈</strong> — MOBA &amp; 自走棋</li>
+                <li><strong>2D/3D 马里奥系列</strong> — 平台跳跃关卡设计经典</li>
+            </ul>
+            <h3>深度体验（300h+）</h3>
+            <ul>
+                <li><strong>无畏契约</strong> — FPS策略思维</li>
+                <li><strong>明日方舟</strong> — 塔防策略与数值理解</li>
+                <li><strong>FIFA系列</strong> — 体育竞技模拟</li>
+                <li><strong>守望先锋</strong> — 团队配合与角色设计</li>
+                <li><strong>皇室战争</strong> — 卡牌策略与资源管理</li>
+                <li><strong>塞尔达传说系列</strong> — 开放世界与交互设计</li>
+            </ul>
+            <h3>游戏视野对策划的价值</h3>
+            <p>多品类的深度体验让我能快速理解不同游戏类型的核心乐趣循环，对比不同设计思路的优劣，在策划工作中提供丰富的参考框架。</p>
+            <h3>关键洞察</h3>
+            <ul>
+                <li><strong>MOBA</strong> — 理解对抗设计、英雄差异化、团队协作机制</li>
+                <li><strong>FPS</strong> — 理解地图设计、武器平衡、经济系统</li>
+                <li><strong>策略</strong> — 理解决策空间、信息设计、博弈深度</li>
+                <li><strong>沙盒</strong> — 理解自由度与引导的平衡、创造性玩法涌现</li>
+                <li><strong>平台跳跃</strong> — 理解关卡节奏、难度曲线、手感调优</li>
+            </ul>
+        </div>
+    </div>
+    <footer class="footer"><p>&copy; 2026 马铭远 | 北京外国语大学 &middot; 游戏策划方向</p></footer>
+</body>
+</html>
