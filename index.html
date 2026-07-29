@@ -1,560 +1,637 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MA_PORTFOLIO | 关卡策划作品集</title>
+    <title>马铭远 | 游戏策划作品集</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* ===== Design Tokens ===== */
-        :root {
-            --color-bg: #f8f9fa;
-            --color-surface: #ffffff;
-            --color-hero: #1e293b;
-            --color-hero-text: #f1f5f9;
-            --color-accent: #d4e157;
-            --color-accent-dark: #c0ca33;
-            --color-text-primary: #1e293b;
-            --color-text-secondary: #64748b;
-            --color-text-muted: #94a3b8;
-            --color-border: #e2e8f0;
-            --color-card-bg: #ffffff;
-            --color-tag-bg: #f1f5f9;
-            --color-tag-text: #475569;
-            --color-link: #3b82f6;
-            --color-link-hover: #2563eb;
-            --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.06);
-            --shadow-md: 0 4px 12px rgb(0 0 0 / 0.08);
-            --shadow-lg: 0 12px 32px rgb(0 0 0 / 0.12);
-            --radius-sm: 6px;
-            --radius-md: 10px;
-            --radius-lg: 16px;
-            --radius-full: 9999px;
-            --font-sans: 'Noto Sans SC', system-ui, -apple-system, sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
-            --transition-fast: 180ms cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-normal: 320ms cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: 500ms cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        [data-theme="dark"] {
-            --color-bg: #0f172a;
-            --color-surface: #1e293b;
-            --color-hero: #0f172a;
-            --color-hero-text: #e2e8f0;
-            --color-accent: #d4e157;
-            --color-accent-dark: #e6ee9c;
-            --color-text-primary: #f1f5f9;
-            --color-text-secondary: #94a3b8;
-            --color-text-muted: #64748b;
-            --color-border: #334155;
-            --color-card-bg: #1e293b;
-            --color-tag-bg: #334155;
-            --color-tag-text: #cbd5e1;
-            --color-link: #60a5fa;
-            --color-link-hover: #93c5fd;
-            --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.2);
-            --shadow-md: 0 4px 12px rgb(0 0 0 / 0.3);
-            --shadow-lg: 0 12px 32px rgb(0 0 0 / 0.4);
-        }
-
-        /* ===== Reset & Base ===== */
+        /* ===== Reset ===== */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        
         html { scroll-behavior: smooth; }
-        
+
         body {
-            font-family: var(--font-sans);
-            background-color: var(--color-bg);
-            color: var(--color-text-primary);
-            line-height: 1.7;
-            transition: background-color var(--transition-normal), color var(--transition-normal);
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        a { color: var(--color-link); text-decoration: none; transition: color var(--transition-fast); }
-        a:hover { color: var(--color-link-hover); }
+        a { text-decoration: none; color: inherit; }
 
-        /* ===== Header / Navigation ===== */
-        .header {
+        /* ===== Navigation Bar ===== */
+        .navbar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 14px 32px;
+            height: 56px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            padding: 0 40px;
             background: transparent;
-            transition: background var(--transition-normal), box-shadow var(--transition-normal);
+            transition: all 0.3s ease;
         }
 
-        .header.scrolled {
-            background: var(--color-surface);
-            box-shadow: var(--shadow-sm);
-            border-bottom: 1px solid var(--color-border);
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
         }
 
-        .header__logo {
+        .navbar__brand {
             display: flex;
             align-items: center;
             gap: 10px;
             font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--color-hero-text);
-            transition: color var(--transition-fast);
+            font-size: 1rem;
+            color: #fff;
         }
 
-        .header.scrolled .header__logo { color: var(--color-text-primary); }
+        .navbar.scrolled .navbar__brand { color: #2d3748; }
 
-        .header__logo-icon {
-            width: 28px;
-            height: 28px;
-            background: var(--color-accent);
-            border-radius: var(--radius-sm);
+        .navbar__brand-icon {
+            font-size: 1.3rem;
+        }
+
+        .navbar__links {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 14px;
+            gap: 28px;
+            list-style: none;
         }
 
-        .header__nav {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .header__nav a {
-            font-size: 0.875rem;
+        .navbar__links a {
+            font-size: 0.88rem;
             font-weight: 500;
-            color: var(--color-hero-text);
-            opacity: 0.85;
-            transition: opacity var(--transition-fast), color var(--transition-fast);
+            color: rgba(255, 255, 255, 0.85);
+            transition: color 0.2s;
+            position: relative;
         }
 
-        .header__nav a:hover { opacity: 1; }
-        .header.scrolled .header__nav a { color: var(--color-text-secondary); opacity: 1; }
-        .header.scrolled .header__nav a:hover { color: var(--color-text-primary); }
+        .navbar__links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #f6e05e;
+            transition: width 0.3s ease;
+        }
 
-        .theme-toggle {
-            width: 36px;
-            height: 36px;
+        .navbar__links a:hover::after { width: 100%; }
+        .navbar__links a:hover { color: #fff; }
+        .navbar.scrolled .navbar__links a { color: #4a5568; }
+        .navbar.scrolled .navbar__links a:hover { color: #2d3748; }
+        .navbar.scrolled .navbar__links a::after { background: #2c3e50; }
+
+        .navbar__actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .navbar__action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
             border: none;
-            background: rgba(255,255,255,0.1);
-            border-radius: var(--radius-full);
+            background: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
-            color: var(--color-hero-text);
-            transition: all var(--transition-fast);
+            transition: all 0.2s;
         }
 
-        .header.scrolled .theme-toggle {
-            background: var(--color-tag-bg);
-            color: var(--color-text-primary);
+        .navbar__action-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            color: #fff;
         }
 
-        .theme-toggle:hover { transform: scale(1.1); }
+        .navbar.scrolled .navbar__action-btn {
+            background: #f0f0f0;
+            color: #4a5568;
+        }
 
         /* ===== Hero Section ===== */
         .hero {
             position: relative;
-            min-height: 100vh;
-            background: var(--color-hero);
-            display: grid;
-            grid-template-columns: 340px 1fr;
-            gap: 0;
+            min-height: 500px;
+            padding-top: 56px;
+            background: #2c3e50;
             overflow: hidden;
         }
 
-        .hero__bg-text {
+        /* Large decorative background text */
+        .hero__deco-text {
             position: absolute;
-            bottom: 5%;
+            bottom: -20px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: clamp(4rem, 12vw, 10rem);
+            font-size: clamp(6rem, 18vw, 16rem);
             font-weight: 900;
-            color: rgba(255, 255, 255, 0.03);
+            color: rgba(255, 255, 255, 0.04);
             white-space: nowrap;
             pointer-events: none;
             user-select: none;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.02em;
+            line-height: 1;
         }
 
-        /* Profile Card (left) */
-        .profile-card {
+        .hero__inner {
             position: relative;
-            background: var(--color-surface);
-            padding: 48px 28px 32px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 2;
-            border-right: 1px solid var(--color-border);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px 80px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* ===== Profile Card ===== */
+        .profile-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+            padding: 36px 24px 28px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
         }
 
         .profile-card__avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: var(--radius-full);
-            background: linear-gradient(135deg, var(--color-accent), #66bb6a);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 14px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
-            margin-bottom: 16px;
-            box-shadow: 0 4px 20px rgb(212 225 87 / 0.3);
-            transition: transform var(--transition-normal);
+            font-size: 2.8rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease;
         }
 
-        .profile-card__avatar:hover { transform: scale(1.05) rotate(5deg); }
+        .profile-card__avatar:hover {
+            transform: rotate(10deg) scale(1.05);
+        }
 
         .profile-card__name {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 700;
+            color: #2d3748;
             margin-bottom: 4px;
         }
 
-        .profile-card__role {
-            font-size: 0.8rem;
-            color: var(--color-text-muted);
-            margin-bottom: 16px;
-            font-family: var(--font-mono);
+        .profile-card__subtitle {
+            font-size: 0.78rem;
+            color: #a0aec0;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 12px;
         }
 
         .profile-card__bio {
-            font-size: 0.85rem;
-            color: var(--color-text-secondary);
-            text-align: center;
-            margin-bottom: 24px;
+            font-size: 0.82rem;
+            color: #718096;
             line-height: 1.6;
+            margin-bottom: 18px;
         }
 
         .profile-card__social {
             display: flex;
-            gap: 12px;
-            margin-bottom: 28px;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 22px;
         }
 
-        .social-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: var(--radius-full);
-            background: var(--color-tag-bg);
+        .profile-card__social a {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
-            color: var(--color-text-secondary);
-            transition: all var(--transition-fast);
-            cursor: pointer;
+            font-size: 15px;
+            color: #4a5568;
+            transition: all 0.2s;
         }
 
-        .social-icon:hover {
-            background: var(--color-accent);
-            color: var(--color-hero);
+        .profile-card__social a:hover {
+            background: #2c3e50;
+            color: #fff;
+            border-color: #2c3e50;
             transform: translateY(-2px);
         }
 
-        .profile-card__info {
-            width: 100%;
-            border-top: 1px solid var(--color-border);
-            padding-top: 20px;
-        }
-
-        .info-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            padding: 6px 0;
-            font-size: 0.8rem;
-        }
-
-        .info-item__label { color: var(--color-text-muted); }
-        .info-item__value { color: var(--color-text-primary); font-weight: 500; }
-
-        .profile-card__skills {
-            width: 100%;
-            margin-top: 20px;
-            border-top: 1px solid var(--color-border);
+        /* Contact info list */
+        .profile-card__contact {
+            text-align: left;
+            border-top: 1px solid #edf2f7;
             padding-top: 16px;
+            margin-bottom: 16px;
         }
 
-        .skills-title {
-            font-size: 0.75rem;
+        .contact-item {
+            display: flex;
+            align-items: baseline;
+            padding: 5px 0;
+            font-size: 0.78rem;
+        }
+
+        .contact-item__label {
+            color: #a0aec0;
+            width: 55px;
+            flex-shrink: 0;
+        }
+
+        .contact-item__value {
+            color: #4a5568;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        /* Skills section in card */
+        .profile-card__skills {
+            text-align: left;
+            border-top: 1px solid #edf2f7;
+            padding-top: 14px;
+        }
+
+        .skills-label {
+            font-size: 0.72rem;
+            color: #a0aec0;
             font-weight: 600;
-            color: var(--color-text-muted);
+            margin-bottom: 10px;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.05em;
+        }
+
+        .skills-group {
             margin-bottom: 10px;
         }
 
-        .skills-grid {
+        .skills-group__title {
+            font-size: 0.7rem;
+            color: #a0aec0;
+            margin-bottom: 4px;
+        }
+
+        .skills-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 5px;
         }
 
         .skill-tag {
-            padding: 4px 10px;
-            background: var(--color-tag-bg);
-            border-radius: var(--radius-full);
-            font-size: 0.72rem;
-            color: var(--color-tag-text);
+            padding: 3px 10px;
+            border-radius: 100px;
+            font-size: 0.7rem;
             font-weight: 500;
-            transition: all var(--transition-fast);
+            background: #edf2f7;
+            color: #4a5568;
+            transition: all 0.2s;
         }
 
-        .skill-tag:hover { background: var(--color-accent); color: var(--color-hero); }
-        .skill-tag--accent { background: var(--color-accent); color: var(--color-hero); font-weight: 600; }
+        .skill-tag:hover {
+            background: #2c3e50;
+            color: #fff;
+        }
 
-        /* Hero Right Content */
+        .skill-tag--primary {
+            background: #667eea;
+            color: #fff;
+        }
+
+        .skill-tag--accent {
+            background: #f6e05e;
+            color: #2d3748;
+        }
+
+        /* ===== Hero Right Side Content ===== */
         .hero__content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 80px 48px 48px;
+            padding-top: 20px;
             position: relative;
         }
 
         .hero__typing {
-            font-size: 0.8rem;
-            font-family: var(--font-mono);
-            color: var(--color-accent);
-            margin-bottom: 16px;
+            font-size: 0.78rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 14px;
             min-height: 1.4em;
+            letter-spacing: 0.05em;
         }
 
         .hero__title {
-            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-size: clamp(1.6rem, 3.2vw, 2.4rem);
             font-weight: 700;
-            color: var(--color-hero-text);
-            line-height: 1.4;
-            margin-bottom: 24px;
+            color: #fff;
+            line-height: 1.5;
+            margin-bottom: 20px;
         }
 
-        .hero__title em {
-            font-style: normal;
-            color: var(--color-accent);
+        .hero__title .highlight {
+            color: #f6e05e;
+            font-weight: 700;
         }
 
         .hero__breadcrumb {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-full);
-            font-size: 0.78rem;
-            font-family: var(--font-mono);
-            color: var(--color-hero-text);
-            opacity: 0.7;
-            width: fit-content;
+            padding: 8px 18px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 100px;
+            font-size: 0.72rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.03em;
         }
 
+        /* Scroll indicator */
         .hero__scroll {
             position: absolute;
-            right: 32px;
+            right: -20px;
             top: 50%;
             transform: translateY(-50%);
             writing-mode: vertical-rl;
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.68rem;
+            letter-spacing: 0.2em;
+            color: rgba(255, 255, 255, 0.35);
             text-transform: uppercase;
-            animation: scrollBounce 2s ease-in-out infinite;
+            font-family: 'JetBrains Mono', monospace;
+            animation: scrollFloat 2.5s ease-in-out infinite;
         }
 
-        @keyframes scrollBounce {
+        @keyframes scrollFloat {
             0%, 100% { transform: translateY(-50%); }
-            50% { transform: translateY(-45%); }
+            50% { transform: translateY(-46%); }
         }
 
-        /* ===== Category Cards (below hero right) ===== */
-        .hero__categories {
+        .hero__scroll-icon {
+            position: absolute;
+            right: -30px;
+            top: 30%;
+            width: 28px;
+            height: 28px;
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
+        }
+
+        /* ===== Content Section ===== */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 5;
+            margin-top: -40px;
+        }
+
+        /* Category cards row */
+        .category-row {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-top: 40px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 50px;
         }
 
         .category-card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: var(--radius-md);
-            padding: 20px;
-            transition: all var(--transition-normal);
+            background: #fff;
+            border-radius: 10px;
+            padding: 24px 28px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #edf2f7;
+            transition: all 0.25s ease;
             cursor: pointer;
         }
 
         .category-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(212, 225, 87, 0.3);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
             transform: translateY(-2px);
         }
 
         .category-card__header {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
+            gap: 10px;
+            margin-bottom: 10px;
         }
 
         .category-card__title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--color-hero-text);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #2d3748;
         }
 
-        .category-card__count {
-            width: 20px;
-            height: 20px;
-            border-radius: var(--radius-full);
-            background: var(--color-accent);
-            color: var(--color-hero);
-            font-size: 0.65rem;
+        .category-card__badge {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #48bb78;
+            color: #fff;
+            font-size: 0.68rem;
             font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
+        .category-card__desc {
+            font-size: 0.76rem;
+            color: #a0aec0;
+            margin-bottom: 10px;
+        }
+
         .category-card__link {
-            font-size: 0.78rem;
-            color: var(--color-hero-text);
-            opacity: 0.6;
+            font-size: 0.8rem;
+            color: #718096;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
+            transition: color 0.2s;
         }
 
-        .category-card__link:hover { opacity: 1; color: var(--color-accent); }
+        .category-card__link:hover { color: #667eea; }
 
-        /* ===== Main Content ===== */
-        .main {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 64px 32px 80px;
+        /* ===== Recent Works ===== */
+        .recent-section {
+            margin-bottom: 60px;
         }
 
-        .section-header {
+        .recent-header {
             display: flex;
             align-items: baseline;
             justify-content: space-between;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #edf2f7;
         }
 
-        .section-title {
-            font-size: 1.3rem;
+        .recent-header__title {
+            font-size: 1.2rem;
             font-weight: 700;
+            color: #2d3748;
         }
 
-        .section-count {
-            font-size: 0.8rem;
-            color: var(--color-text-muted);
-            font-family: var(--font-mono);
+        .recent-header__count {
+            font-size: 0.78rem;
+            color: #a0aec0;
+            font-family: 'JetBrains Mono', monospace;
         }
 
-        /* ===== Work Cards ===== */
         .works-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
         }
 
+        /* Work cards */
         .work-card {
-            background: var(--color-card-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-lg);
+            background: #fff;
+            border-radius: 12px;
             overflow: hidden;
-            transition: all var(--transition-normal);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #edf2f7;
+            transition: all 0.3s ease;
             cursor: pointer;
         }
 
         .work-card:hover {
             transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--color-accent);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
         }
 
         .work-card__cover {
             width: 100%;
-            height: 180px;
-            background: linear-gradient(135deg, #1e293b, #334155);
+            height: 200px;
             position: relative;
             overflow: hidden;
         }
 
-        .work-card__cover-pattern {
-            position: absolute;
-            inset: 0;
-            opacity: 0.4;
-            background-image: 
-                radial-gradient(circle at 20% 50%, var(--color-accent) 1px, transparent 1px),
-                radial-gradient(circle at 80% 20%, #f472b6 1px, transparent 1px),
-                radial-gradient(circle at 60% 80%, #60a5fa 1px, transparent 1px);
-            background-size: 60px 60px, 80px 80px, 40px 40px;
+        .cover-pattern {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .work-card__cover--alt .work-card__cover-pattern {
-            background-image: 
-                linear-gradient(45deg, var(--color-accent) 25%, transparent 25%),
-                linear-gradient(-45deg, #f472b6 25%, transparent 25%);
-            background-size: 40px 40px;
+        .cover-pattern--1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .cover-pattern--2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .cover-pattern--3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .cover-pattern--4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .cover-pattern--5 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .cover-pattern--6 { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
+
+        .cover-pattern__shapes {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .cover-pattern__shapes::before,
+        .cover-pattern__shapes::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
             opacity: 0.3;
         }
 
-        .work-card__cover--game .work-card__cover-pattern {
-            background: linear-gradient(135deg, #059669 0%, #0d9488 50%, #0891b2 100%);
-            opacity: 0.6;
+        .cover-pattern__shapes::before {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.4);
+            top: -20px;
+            right: -20px;
+        }
+
+        .cover-pattern__shapes::after {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.3);
+            bottom: -10px;
+            left: 20%;
+        }
+
+        .cover-pattern__icon {
+            font-size: 3rem;
+            z-index: 2;
+            opacity: 0.9;
         }
 
         .work-card__pin {
             position: absolute;
             top: 12px;
-            left: 12px;
-            padding: 3px 8px;
-            background: var(--color-accent);
-            color: var(--color-hero);
+            right: 12px;
+            padding: 3px 10px;
+            background: rgba(255, 200, 50, 0.9);
+            color: #2d3748;
             font-size: 0.65rem;
             font-weight: 700;
-            border-radius: var(--radius-sm);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            border-radius: 4px;
+            letter-spacing: 0.03em;
+        }
+
+        .work-card__tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 4px 12px;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            font-size: 0.7rem;
+            border-radius: 100px;
+            font-weight: 500;
+        }
+
+        .work-card__body {
+            padding: 18px 22px 22px;
         }
 
         .work-card__category {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            padding: 3px 10px;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            color: white;
-            font-size: 0.68rem;
-            border-radius: var(--radius-full);
+            font-size: 0.72rem;
+            color: #a0aec0;
+            margin-bottom: 6px;
         }
-
-        .work-card__body { padding: 18px 20px 20px; }
 
         .work-card__title {
             font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 12px;
             line-height: 1.4;
         }
 
         .work-card__desc {
-            font-size: 0.8rem;
-            color: var(--color-text-secondary);
+            font-size: 0.78rem;
+            color: #718096;
             line-height: 1.5;
             margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .work-card__meta {
@@ -562,355 +639,487 @@
             align-items: center;
             gap: 16px;
             font-size: 0.72rem;
-            color: var(--color-text-muted);
-            font-family: var(--font-mono);
+            color: #a0aec0;
+            font-family: 'JetBrains Mono', monospace;
         }
 
-        .work-card__meta-item {
+        .work-card__meta span {
             display: flex;
             align-items: center;
             gap: 4px;
         }
 
+        /* Detail page styles removed - now using separate HTML pages */
+
         /* ===== Footer ===== */
         .footer {
-            border-top: 1px solid var(--color-border);
-            padding: 32px;
             text-align: center;
+            padding: 36px 20px;
             font-size: 0.78rem;
-            color: var(--color-text-muted);
+            color: #a0aec0;
+            border-top: 1px solid #edf2f7;
+            background: #fff;
         }
 
-        .footer a { color: var(--color-accent-dark); }
-
-        /* ===== Scroll Animations ===== */
-        .fade-in {
+        /* ===== Animations ===== */
+        .fade-up {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+            transform: translateY(24px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
                         transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .fade-in.visible {
+        .fade-up.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* ===== Responsive ===== */
-        @media (max-width: 900px) {
-            .hero {
-                grid-template-columns: 1fr;
-                min-height: auto;
-            }
-
-            .profile-card {
-                border-right: none;
-                border-bottom: 1px solid var(--color-border);
-                padding: 80px 24px 32px;
-            }
-
-            .hero__content { padding: 40px 24px; }
-            .hero__scroll { display: none; }
-            .hero__categories { grid-template-columns: 1fr; }
-            .main { padding: 40px 20px 60px; }
-            .works-grid { grid-template-columns: 1fr; }
-
-            .header__nav a:not(:first-child):not(:last-child) { display: none; }
-        }
-
-        /* ===== Cursor blink for typing ===== */
-        .typing-cursor {
+        /* Typing cursor */
+        .cursor {
             display: inline-block;
             width: 2px;
             height: 1em;
-            background: var(--color-accent);
+            background: rgba(255, 255, 255, 0.6);
             margin-left: 2px;
-            animation: blink 1s infinite;
             vertical-align: text-bottom;
+            animation: cursorBlink 1s step-end infinite;
         }
 
-        @keyframes blink {
+        @keyframes cursorBlink {
             0%, 50% { opacity: 1; }
             51%, 100% { opacity: 0; }
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 900px) {
+            .hero__inner {
+                grid-template-columns: 1fr;
+                padding: 40px 20px 60px;
+                gap: 30px;
+            }
+
+            .profile-card {
+                max-width: 320px;
+                margin: 0 auto;
+            }
+
+            .hero__content { padding-top: 0; }
+            .hero__scroll, .hero__scroll-icon { display: none; }
+
+            .content-section { padding: 0 20px; margin-top: -20px; }
+            .category-row { grid-template-columns: 1fr; }
+            .works-grid { grid-template-columns: 1fr; }
+
+            .navbar { padding: 0 20px; }
+            .navbar__links { gap: 16px; }
+
+            .detail-page__content { padding: 32px 20px 60px; }
+            .detail-page__header { padding: 12px 20px; }
+        }
+
+        @media (max-width: 600px) {
+            .hero__title { font-size: 1.4rem; }
+            .navbar__links a:not(:first-child):not(:nth-child(2)) { display: none; }
+            .category-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header" id="header">
-        <div class="header__logo">
-            <div class="header__logo-icon">M</div>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar__brand">
+            <span class="navbar__brand-icon">&#127918;</span>
             <span>MA_PORTFOLIO</span>
         </div>
-        <nav class="header__nav">
-            <a href="#home">首页</a>
-            <a href="#works">作品</a>
-            <a href="#about">关于</a>
-            <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
-                <span id="themeIcon">&#9790;</span>
-            </button>
-        </nav>
-    </header>
+        <ul class="navbar__links">
+            <li><a href="#home" data-nav="home">首页</a></li>
+            <li><a href="#works" data-nav="works">作品</a></li>
+            <li><a href="#experience" data-nav="experience">经历</a></li>
+            <li><a href="#contact" data-nav="contact">联系</a></li>
+        </ul>
+        <div class="navbar__actions">
+            <button class="navbar__action-btn" title="搜索">&#128269;</button>
+            <button class="navbar__action-btn" id="themeBtn" title="切换主题">&#9790;</button>
+        </div>
+    </nav>
 
-    <!-- Hero -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero__bg-text">LEVEL DESIGN</div>
+        <div class="hero__deco-text">生存只是轨道</div>
 
-        <!-- Left: Profile Card -->
-        <aside class="profile-card">
-            <div class="profile-card__avatar">&#127918;</div>
-            <h1 class="profile-card__name">马哥</h1>
-            <p class="profile-card__role">Level Designer Intern</p>
-            <p class="profile-card__bio">合金弹头项目组实习生<br>正在从零开始学习关卡策划的全流程</p>
-            
-            <div class="profile-card__social">
-                <div class="social-icon" title="GitHub">&#128187;</div>
-                <div class="social-icon" title="WeChat">&#128172;</div>
-                <div class="social-icon" title="Email">&#9993;</div>
-            </div>
+        <div class="hero__inner">
+            <!-- Left: Profile Card -->
+            <div class="profile-card">
+                <div class="profile-card__avatar">&#127918;</div>
+                <h1 class="profile-card__name">马铭远</h1>
+                <p class="profile-card__subtitle">Game Planner / Creator</p>
+                <p class="profile-card__bio">19岁 | 北京外国语大学 | 朝鲜语（半岛研究）</p>
 
-            <div class="profile-card__info">
-                <div class="info-item">
-                    <span class="info-item__label">项目组</span>
-                    <span class="info-item__value">合金弹头</span>
+                <div class="profile-card__social">
+                    <a href="https://space.bilibili.com/" title="B站" target="_blank">&#127909;</a>
+                    <a href="#" title="GitHub">&#128187;</a>
+                    <a href="#" title="WeChat">&#128172;</a>
+                    <a href="mailto:2275390554@qq.com" title="邮箱">&#9993;</a>
                 </div>
-                <div class="info-item">
-                    <span class="info-item__label">方向</span>
-                    <span class="info-item__value">关卡策划</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-item__label">学习中</span>
-                    <span class="info-item__value">Unity 引擎</span>
-                </div>
-            </div>
 
-            <div class="profile-card__skills">
-                <p class="skills-title">技能 &amp; 工具</p>
-                <div class="skills-grid">
-                    <span class="skill-tag skill-tag--accent">Unity</span>
-                    <span class="skill-tag">关卡设计</span>
-                    <span class="skill-tag">敌兵设计</span>
-                    <span class="skill-tag">状态机</span>
-                    <span class="skill-tag">Photoshop</span>
-                    <span class="skill-tag">Figma</span>
-                    <span class="skill-tag">C#</span>
-                    <span class="skill-tag">Excel</span>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Right: Hero Content -->
-        <div class="hero__content">
-            <div class="hero__typing" id="typingText"></div>
-            <h2 class="hero__title">
-                在<em>子弹</em>与<em>爆炸</em>之间<br>
-                设计有趣的敌人行为
-            </h2>
-            <div class="hero__breadcrumb">
-                HOME &nbsp;/&nbsp; PORTFOLIO &nbsp;/&nbsp; INDEX.HTML
-            </div>
-
-            <div class="hero__categories">
-                <div class="category-card">
-                    <div class="category-card__header">
-                        <span class="category-card__title">敌兵设计文档</span>
-                        <span class="category-card__count">3</span>
+                <div class="profile-card__contact" id="contact">
+                    <div class="contact-item">
+                        <span class="contact-item__label">手机:</span>
+                        <span class="contact-item__value">18743306288</span>
                     </div>
-                    <a class="category-card__link" href="#works">查看分类 &rarr;</a>
-                </div>
-                <div class="category-card">
-                    <div class="category-card__header">
-                        <span class="category-card__title">关卡策划练习</span>
-                        <span class="category-card__count">2</span>
+                    <div class="contact-item">
+                        <span class="contact-item__label">QQ:</span>
+                        <span class="contact-item__value">2275390554</span>
                     </div>
-                    <a class="category-card__link" href="#works">查看分类 &rarr;</a>
+                    <div class="contact-item">
+                        <span class="contact-item__label">邮箱:</span>
+                        <span class="contact-item__value">2275390554@qq.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-item__label">学校:</span>
+                        <span class="contact-item__value">北京外国语大学</span>
+                    </div>
+                </div>
+
+                <div class="profile-card__skills">
+                    <p class="skills-label">个人技能:</p>
+                    <div class="skills-group">
+                        <p class="skills-group__title">语言能力：</p>
+                        <div class="skills-tags">
+                            <span class="skill-tag skill-tag--primary">韩语母语级</span>
+                            <span class="skill-tag skill-tag--accent">英语优秀</span>
+                        </div>
+                    </div>
+                    <div class="skills-group">
+                        <p class="skills-group__title">专业技能：</p>
+                        <div class="skills-tags">
+                            <span class="skill-tag">游戏系统设计</span>
+                            <span class="skill-tag">用户研究</span>
+                            <span class="skill-tag">数据分析</span>
+                        </div>
+                    </div>
+                    <div class="skills-group">
+                        <p class="skills-group__title">内容创作：</p>
+                        <div class="skills-tags">
+                            <span class="skill-tag">视频制作</span>
+                            <span class="skill-tag">文案策划</span>
+                            <span class="skill-tag">社群运营</span>
+                        </div>
+                    </div>
+                    <div class="skills-group">
+                        <p class="skills-group__title">工具：</p>
+                        <div class="skills-tags">
+                            <span class="skill-tag">Excel</span>
+                            <span class="skill-tag">AI大模型</span>
+                            <span class="skill-tag">剪辑软件</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <span class="hero__scroll">SCROLL DOWN &#8595;</span>
+            <!-- Right: Hero content -->
+            <div class="hero__content">
+                <div class="hero__typing" id="typingText"></div>
+                <h2 class="hero__title">
+                    用<span class="highlight">数据</span>与<span class="highlight">洞察</span><br>
+                    创造有趣的<span class="highlight">游戏体验</span>
+                </h2>
+                <div class="hero__breadcrumb">
+                    HOME &nbsp;/&nbsp; PORTFOLIO &nbsp;/&nbsp; INDEX
+                </div>
+
+                <span class="hero__scroll">SCROLL DOWN</span>
+                <span class="hero__scroll-icon">&#9675;</span>
+            </div>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main class="main" id="works">
-        <div class="section-header">
-            <h2 class="section-title">作品集</h2>
-            <span class="section-count">05 项目</span>
+    <!-- Content below hero -->
+    <div class="content-section">
+        <!-- Category Cards -->
+        <div class="category-row">
+            <div class="category-card fade-up" onclick="scrollToSection('works')">
+                <div class="category-card__header">
+                    <span class="category-card__title">游戏策划项目</span>
+                    <span class="category-card__badge">2</span>
+                </div>
+                <p class="category-card__desc">系统设计 & 概念方案</p>
+                <span class="category-card__link">查看项目 &rarr;</span>
+            </div>
+            <div class="category-card fade-up" onclick="scrollToSection('works')">
+                <div class="category-card__header">
+                    <span class="category-card__title">内容创作</span>
+                    <span class="category-card__badge">2</span>
+                </div>
+                <p class="category-card__desc">B站视频 & 社群运营</p>
+                <span class="category-card__link">查看作品 &rarr;</span>
+            </div>
+            <div class="category-card fade-up" onclick="scrollToSection('experience')">
+                <div class="category-card__header">
+                    <span class="category-card__title">实习 & 校园</span>
+                    <span class="category-card__badge">2</span>
+                </div>
+                <p class="category-card__desc">虎扑实习 & 电竞社创始人</p>
+                <span class="category-card__link">查看经历 &rarr;</span>
+            </div>
         </div>
 
-        <div class="works-grid">
-            <!-- Work Card 1 -->
-            <article class="work-card fade-in">
-                <div class="work-card__cover work-card__cover--game">
-                    <div class="work-card__cover-pattern"></div>
-                    <span class="work-card__pin">置顶</span>
-                    <span class="work-card__category">敌兵设计</span>
-                </div>
-                <div class="work-card__body">
-                    <h3 class="work-card__title">步兵敌人完整设计文档</h3>
-                    <p class="work-card__desc">从行为设计到 Unity 实现的全流程记录，包含状态机、动画、碰撞体设置</p>
-                    <div class="work-card__meta">
-                        <span class="work-card__meta-item">&#128197; 2026/07</span>
-                        <span class="work-card__meta-item">&#128196; 设计文档</span>
-                        <span class="work-card__meta-item">&#9733; 进行中</span>
-                    </div>
-                </div>
-            </article>
+        <!-- Recent Works -->
+        <div class="recent-section" id="works">
+            <div class="recent-header">
+                <h2 class="recent-header__title">项目作品</h2>
+                <span class="recent-header__count">共 6 篇</span>
+            </div>
 
-            <!-- Work Card 2 -->
-            <article class="work-card fade-in">
-                <div class="work-card__cover">
-                    <div class="work-card__cover-pattern"></div>
-                    <span class="work-card__category">关卡策划</span>
-                </div>
-                <div class="work-card__body">
-                    <h3 class="work-card__title">横版关卡节奏分析</h3>
-                    <p class="work-card__desc">对合金弹头经典关卡的节奏拆解，包括敌人配置密度、难度曲线分析</p>
-                    <div class="work-card__meta">
-                        <span class="work-card__meta-item">&#128197; 2026/07</span>
-                        <span class="work-card__meta-item">&#128196; 分析报告</span>
+            <div class="works-grid">
+                <!-- Card 1: BeckPick -->
+                <a href="works/beckpick.html" class="work-card fade-up">
+                    <div class="work-card__cover">
+                        <div class="cover-pattern cover-pattern--1">
+                            <div class="cover-pattern__shapes"></div>
+                            <span class="cover-pattern__icon">&#127918;</span>
+                        </div>
+                        <span class="work-card__pin">置顶</span>
+                        <span class="work-card__tag">游戏系统设计</span>
                     </div>
-                </div>
-            </article>
+                    <div class="work-card__body">
+                        <p class="work-card__category">腾讯产品经理创造营 入围项目</p>
+                        <h3 class="work-card__title">英雄联盟 BP助理 - BeckPick 概念设计</h3>
+                        <p class="work-card__desc">基于AI模型的BP辅助工具，解决高信息密度+短决策时间的结构性矛盾</p>
+                        <div class="work-card__meta">
+                            <span>2025</span>
+                            <span>&#128065; 个人项目</span>
+                        </div>
+                    </div>
+                </a>
 
-            <!-- Work Card 3 -->
-            <article class="work-card fade-in">
-                <div class="work-card__cover work-card__cover--alt">
-                    <div class="work-card__cover-pattern"></div>
-                    <span class="work-card__category">学习笔记</span>
-                </div>
-                <div class="work-card__body">
-                    <h3 class="work-card__title">Unity 状态机实现笔记</h3>
-                    <p class="work-card__desc">记录学习有限状态机（FSM）的过程，以及如何用 C# 实现敌兵 AI</p>
-                    <div class="work-card__meta">
-                        <span class="work-card__meta-item">&#128197; 2026/07</span>
-                        <span class="work-card__meta-item">&#128196; 技术笔记</span>
+                <!-- Card 2: B站自媒体 -->
+                <a href="works/bilibili.html" class="work-card fade-up">
+                    <div class="work-card__cover">
+                        <div class="cover-pattern cover-pattern--2">
+                            <div class="cover-pattern__shapes"></div>
+                            <span class="cover-pattern__icon">&#127909;</span>
+                        </div>
+                        <span class="work-card__pin">置顶</span>
+                        <span class="work-card__tag">内容创作</span>
                     </div>
-                </div>
-            </article>
+                    <div class="work-card__body">
+                        <p class="work-card__category">B站游戏视频自媒体</p>
+                        <h3 class="work-card__title">宝可梦对战深度解析系列 - 5万+播放爆款</h3>
+                        <p class="work-card__desc">独立完成选题策划、文案撰写及视频剪辑，吸引领域头部UP主关注</p>
+                        <div class="work-card__meta">
+                            <span>2024-2025</span>
+                            <span>&#128065; 5万+播放</span>
+                            <span>&#128077; 500+点赞</span>
+                        </div>
+                    </div>
+                </a>
 
-            <!-- Work Card 4 -->
-            <article class="work-card fade-in">
-                <div class="work-card__cover work-card__cover--game">
-                    <div class="work-card__cover-pattern"></div>
-                    <span class="work-card__pin">置顶</span>
-                    <span class="work-card__category">敌兵设计</span>
-                </div>
-                <div class="work-card__body">
-                    <h3 class="work-card__title">载具型敌人概念设计</h3>
-                    <p class="work-card__desc">坦克/直升机等载具敌人的行为模式设计，包含登场动画和攻击模式</p>
-                    <div class="work-card__meta">
-                        <span class="work-card__meta-item">&#128197; 2026/07</span>
-                        <span class="work-card__meta-item">&#128196; 概念设计</span>
+                <!-- Card 3: 电竞社 -->
+                <a href="works/esports.html" class="work-card fade-up">
+                    <div class="work-card__cover">
+                        <div class="cover-pattern cover-pattern--3">
+                            <div class="cover-pattern__shapes"></div>
+                            <span class="cover-pattern__icon">&#127942;</span>
+                        </div>
+                        <span class="work-card__tag">社群运营</span>
                     </div>
-                </div>
-            </article>
+                    <div class="work-card__body">
+                        <p class="work-card__category">校园电竞 & TES校园大使</p>
+                        <h3 class="work-card__title">北外电竞社英雄联盟分部 - 从0到100+人</h3>
+                        <p class="work-card__desc">创建社团、策划赛事、对接官方资源，覆盖300+人</p>
+                        <div class="work-card__meta">
+                            <span>2025</span>
+                            <span>&#128101; 100+成员</span>
+                        </div>
+                    </div>
+                </a>
 
-            <!-- Work Card 5 -->
-            <article class="work-card fade-in">
-                <div class="work-card__cover work-card__cover--alt">
-                    <div class="work-card__cover-pattern"></div>
-                    <span class="work-card__category">关卡策划</span>
-                </div>
-                <div class="work-card__body">
-                    <h3 class="work-card__title">自制关卡白盒原型</h3>
-                    <p class="work-card__desc">使用 Unity ProBuilder 搭建的横版关卡白盒，验证敌人配置和玩家动线</p>
-                    <div class="work-card__meta">
-                        <span class="work-card__meta-item">&#128197; 2026/07</span>
-                        <span class="work-card__meta-item">&#128196; 关卡原型</span>
+                <!-- Card 4: 虎扑实习 -->
+                <a href="works/hupu.html" class="work-card fade-up" id="experience">
+                    <div class="work-card__cover">
+                        <div class="cover-pattern cover-pattern--4">
+                            <div class="cover-pattern__shapes"></div>
+                            <span class="cover-pattern__icon">&#128200;</span>
+                        </div>
+                        <span class="work-card__tag">用户研究</span>
                     </div>
-                </div>
-            </article>
+                    <div class="work-card__body">
+                        <p class="work-card__category">虎扑（上海）文化传播</p>
+                        <h3 class="work-card__title">用户研究观察员 - 趋势洞察与数据分析</h3>
+                        <p class="work-card__desc">独立完成趋势研究报告，3份被采纳用于用户增长策略</p>
+                        <div class="work-card__meta">
+                            <span>2025.10-12</span>
+                            <span>&#128196; 8份报告</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 5: 宝可梦战绩 -->
+                <a href="works/pokemon.html" class="work-card fade-up">
+                    <div class="work-card__cover">
+                        <div class="cover-pattern cover-pattern--5">
+                            <div class="cover-pattern__shapes"></div>
+                            <span class="cover-pattern__icon">&#9889;</span>
+                        </div>
+                        <span class="work-card__tag">游戏成就</span>
+                    </div>
+                    <div class="work-card__body">
+                        <p class="work-card__category">竞技游戏经历</p>
+                        <h3 class="work-card__title">宝可梦对战天梯 - 世界排名第42</h3>
+                        <p class="work-card__desc">深度理解游戏平衡与meta分析，具备顶级竞技思维</p>
+                        <div class="work-card__meta">
+                            <span>持续</span>
+                            <span>&#127942; World #42</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 6: 游戏经历 -->
+                <a href="works/gaming.html" class="work-card fade-up">
+                    <div class="work-card__cover">
+                        <div class="cover-pattern cover-pattern--6">
+                            <div class="cover-pattern__shapes"></div>
+                            <span class="cover-pattern__icon">&#128126;</span>
+                        </div>
+                        <span class="work-card__tag">游戏积累</span>
+                    </div>
+                    <div class="work-card__body">
+                        <p class="work-card__category">深度游戏体验</p>
+                        <h3 class="work-card__title">多品类游戏深度体验 - 2000h+ 英雄联盟</h3>
+                        <p class="work-card__desc">覆盖MOBA、FPS、策略、沙盒、动作等多品类，10年电竞观赛经验</p>
+                        <div class="work-card__meta">
+                            <span>10年+</span>
+                            <span>&#127918; 多品类</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
-    </main>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&#169; 2026 马哥 | 合金弹头项目组 · 关卡策划实习生</p>
-        <p style="margin-top: 6px;">Hosted on <a href="https://pages.github.com" target="_blank">GitHub Pages</a> &middot; Built with &#9829;</p>
+        <p>&copy; 2026 马铭远 | 北京外国语大学 &middot; 游戏策划方向</p>
+        <p style="margin-top: 4px;">Hosted on <a href="https://pages.github.com" style="color: #667eea;">GitHub Pages</a></p>
     </footer>
+
+    <!-- Detail pages are now separate HTML files in /works/ folder -->
 
     <!-- Scripts -->
     <script>
-        // === Theme Toggle ===
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        const html = document.documentElement;
-
-        function setTheme(theme) {
-            html.setAttribute('data-theme', theme);
-            themeIcon.innerHTML = theme === 'dark' ? '&#9728;' : '&#9790;';
-            localStorage.setItem('theme', theme);
-        }
-
-        themeToggle.addEventListener('click', () => {
-            const current = html.getAttribute('data-theme');
-            setTheme(current === 'dark' ? 'light' : 'dark');
-        });
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        setTheme(savedTheme);
-
-        // === Header Scroll Effect ===
-        const header = document.getElementById('header');
+        // === Navbar scroll effect ===
+        const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            header.classList.toggle('scrolled', window.scrollY > 60);
+            navbar.classList.toggle('scrolled', window.scrollY > 80);
         });
 
-        // === Typing Effect ===
+        // === Typing effect ===
         const typingEl = document.getElementById('typingText');
         const phrases = [
-            'Level Design in Progress...',
-            'Designing Enemy Behaviors...',
-            'Building Fun Encounters...',
-            'Learning Unity Every Day...'
+            '此站正在建设中,LOADING......',
+            'Game Planner in Progress...',
+            '宝可梦对战 World Rank #42',
+            '用数据洞察驱动游戏设计...'
         ];
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
+        let pi = 0, ci = 0, deleting = false;
 
         function typeLoop() {
-            const currentPhrase = phrases[phraseIndex];
-            
-            if (isDeleting) {
-                typingEl.innerHTML = currentPhrase.substring(0, charIndex - 1) + '<span class="typing-cursor"></span>';
-                charIndex--;
+            const phrase = phrases[pi];
+            if (deleting) {
+                ci--;
+                typingEl.innerHTML = phrase.substring(0, ci) + '<span class="cursor"></span>';
             } else {
-                typingEl.innerHTML = currentPhrase.substring(0, charIndex + 1) + '<span class="typing-cursor"></span>';
-                charIndex++;
+                ci++;
+                typingEl.innerHTML = phrase.substring(0, ci) + '<span class="cursor"></span>';
             }
 
-            let delay = isDeleting ? 40 : 80;
+            let delay = deleting ? 35 : 70;
 
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                delay = 2000;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                delay = 500;
+            if (!deleting && ci === phrase.length) {
+                delay = 2200;
+                deleting = true;
+            } else if (deleting && ci === 0) {
+                deleting = false;
+                pi = (pi + 1) % phrases.length;
+                delay = 400;
             }
 
             setTimeout(typeLoop, delay);
         }
-
         typeLoop();
 
-        // === Scroll Reveal ===
-        const fadeEls = document.querySelectorAll('.fade-in');
+        // === Scroll reveal ===
+        const fadeEls = document.querySelectorAll('.fade-up');
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
+            entries.forEach((entry, i) => {
                 if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, index * 100);
+                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
-
+        }, { threshold: 0.15 });
         fadeEls.forEach(el => observer.observe(el));
+
+        // Detail pages are now separate HTML files - no JS overlay needed
+
+        // === Smooth scroll to section ===
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // === Nav link smooth scroll ===
+        document.querySelectorAll('.navbar__links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.getElementById(href.slice(1));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // === Theme toggle ===
+        const themeBtn = document.getElementById('themeBtn');
+        let dark = false;
+        themeBtn.addEventListener('click', () => {
+            dark = !dark;
+            if (dark) {
+                document.body.style.background = '#1a202c';
+                document.body.style.color = '#e2e8f0';
+                document.querySelectorAll('.work-card, .category-card, .footer').forEach(el => {
+                    el.style.background = '#2d3748';
+                    el.style.borderColor = '#4a5568';
+                });
+                document.querySelectorAll('.work-card__title, .category-card__title, .recent-header__title, .profile-card__name').forEach(el => {
+                    el.style.color = '#e2e8f0';
+                });
+                document.querySelectorAll('.work-card__desc, .category-card__desc').forEach(el => {
+                    el.style.color = '#a0aec0';
+                });
+                themeBtn.innerHTML = '&#9728;';
+            } else {
+                document.body.style.background = '#f5f5f5';
+                document.body.style.color = '#333';
+                document.querySelectorAll('.work-card, .category-card, .footer').forEach(el => {
+                    el.style.background = '#fff';
+                    el.style.borderColor = '#edf2f7';
+                });
+                document.querySelectorAll('.work-card__title, .category-card__title, .recent-header__title, .profile-card__name').forEach(el => {
+                    el.style.color = '#2d3748';
+                });
+                document.querySelectorAll('.work-card__desc, .category-card__desc').forEach(el => {
+                    el.style.color = '#718096';
+                });
+                themeBtn.innerHTML = '&#9790;';
+            }
+        });
     </script>
 </body>
 </html>
