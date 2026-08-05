@@ -60,6 +60,9 @@
         .result-tag--red { background: #fed7d7; color: #c53030; }
         .result-tag--green { background: #c6f6d5; color: #276749; }
         .result-tag--blue { background: #bee3f8; color: #2a4365; }
+        .screenshot-group { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 20px 0 28px; }
+        .screenshot-group img { width: 100%; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.12); border: 1px solid #e2e8f0; }
+        .screenshot-group figcaption { text-align: center; font-size: 0.75rem; color: #a0aec0; margin-top: 6px; }
         .footer { text-align: center; padding: 36px 20px; font-size: 0.78rem; color: #a0aec0; border-top: 1px solid #edf2f7; background: #fff; }
         @media (max-width: 900px) { .article-hero__inner { grid-template-columns: 1fr; padding: 30px 20px 50px; gap: 24px; } .profile-mini { max-width: 300px; margin: 0 auto; } .article-content { margin-left: 0; } .article-body { padding: 30px 20px 60px; } .navbar { padding: 0 20px; } .scroll-indicator { display: none; } }
     </style>
@@ -100,8 +103,18 @@
         <div class="article-content">
             <div class="highlight-box">负责《合金弹头：觉醒》敌兵战斗单元的配置与落地，独立完成系统拆解分析，并产出多篇流程文档为项目组新人赋能。</div>
 
-            <h2>一、敌兵设计与落地</h2>
-            <h3>工作内容</h3>
+ <h2>一、敌兵设计与落地</h2>
+   <div class="screenshot-group">
+                <figure>
+     <img src="../metalslug-level.jpg" alt="关卡选择界面 - 世界冒险模式">
+     <figcaption>世界冒险关卡选择界面（爽玩服60-66章）</figcaption>
+        </figure>
+     <figure>
+        <img src="../metalslug-battle.jpg" alt="战斗实机画面">
+            <figcaption>关卡实机战斗画面 - 敌兵登场与战斗效果</figcaption>
+          </figure>
+         </div>
+ <h3>工作内容</h3>
             <ul>
                 <li>基于项目现有表格框架，完成<strong>敌兵实例表、行为表</strong>等核心配置</li>
                 <li>协同关卡策划参与<strong>爽玩服第60-66章</strong>的敌兵设计</li>
