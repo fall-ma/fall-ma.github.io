@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>光仔卡牌 H5 活动 | 马铭远</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+     body {
+            font-family: 'Noto Sans SC', 'Inter', system-ui, sans-serif;
+ background: #f8fafc;
+      color: #2d3748;
+      line-height: 1.7;
+        }
+        .back-nav {
+      position: fixed; top: 0; left: 0; right: 0;
+         background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            padding: 16px 32px;
+         z-index: 100;
+            border-bottom: 1px solid #edf2f7;
+        }
+  .back-nav a {
+            color: #667eea;
+            text-decoration: none;
+     font-weight: 500;
+       font-size: 0.9rem;
+   }
+        .back-nav a:hover { text-decoration: underline; }
+        .hero-banner {
+  margin-top: 60px;
+            padding: 80px 32px 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            text-align: center;
+       color: white;
+    }
+        .hero-banner h1 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 900;
+            margin-bottom: 12px;
+ }
+        .hero-banner .subtitle {
+font-size: 1.1rem;
+    opacity: 0.9;
+            font-weight: 400;
+     }
+   .hero-banner .role-tag {
+          display: inline-block;
+ margin-top: 16px;
+            padding: 6px 18px;
+     background: rgba(255,255,255,0.2);
+        border-radius: 20px;
+   font-size: 0.85rem;
+     backdrop-filter: blur(6px);
+    }
+        .container {
+     max-width: 820px;
+       margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+    .section {
+      margin-bottom: 48px;
+  }
+.section-title {
+   font-size: 1.4rem;
+   font-weight: 700;
+          color: #1a202c;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #667eea;
+            display: inline-block;
+     }
+  .section p {
+       color: #4a5568;
+        margin-bottom: 14px;
+            font-size: 0.95rem;
+        }
+    .highlight-box {
+         background: linear-gradient(135deg, #f0f4ff, #faf5ff);
+            border-left: 4px solid #667eea;
+ padding: 20px 24px;
+          border-radius: 0 12px 12px 0;
+     margin: 20px 0;
+        }
+ .highlight-box p {
+        margin-bottom: 8px;
+      color: #2d3748;
+   }
+     .stats-grid {
+          display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+      margin: 24px 0;
+        }
+        .stat-card {
+      background: white;
+            border-radius: 12px;
+         padding: 20px;
+  text-align: center;
+          box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        border: 1px solid #edf2f7;
+        }
+.stat-card .number {
+            font-size: 1.8rem;
+ font-weight: 900;
+    color: #667eea;
+            display: block;
+        }
+        .stat-card .label {
+       font-size: 0.8rem;
+      color: #718096;
+            margin-top: 4px;
+        }
+        .mechanism-list {
+      display: flex;
+    flex-wrap: wrap;
+ gap: 10px;
+            margin: 16px 0;
+        }
+  .mechanism-tag {
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 6px 14px;
+ border-radius: 20px;
+      font-size: 0.82rem;
+   font-weight: 500;
+        }
+        .insight-list {
+            list-style: none;
+            padding: 0;
+        }
+        .insight-list li {
+            position: relative;
+      padding-left: 24px;
+          margin-bottom: 12px;
+     font-size: 0.92rem;
+       color: #4a5568;
+        }
+        .insight-list li::before {
+            content: "\25B8";
+       position: absolute;
+            left: 0;
+     color: #667eea;
+  font-weight: bold;
+    }
+        .screenshot-gallery {
+            display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+          margin: 24px 0;
+        }
+        .screenshot-item {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+     border: 1px solid #edf2f7;
+     background: white;
+        }
+        .screenshot-item img {
+width: 100%;
+   height: auto;
+        display: block;
+}
+        .screenshot-item .caption {
+          padding: 10px 14px;
+            font-size: 0.8rem;
+            color: #718096;
+        text-align: center;
+            font-weight: 500;
+    }
+  .poster-img {
+       width: 100%;
+          max-width: 400px;
+            margin: 24px auto;
+ display: block;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+        }
+        .footer-nav {
+        text-align: center;
+            padding: 32px 0;
+        border-top: 1px solid #edf2f7;
+ }
+        .footer-nav a {
+            color: #667eea;
+   text-decoration: none;
+     font-weight: 500;
+ }
+        .footer-nav a:hover { text-decoration: underline; }
+        @media (max-width: 640px) {
+        .hero-banner { padding: 60px 20px 40px; }
+            .container { padding: 32px 16px 60px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .screenshot-gallery { grid-template-columns: repeat(2, 1fr); }
+    }
+    </style>
+</head>
+<body>
+    <nav class="back-nav">
+      <a href="../index.html">&larr; 返回首页</a>
+    </nav>
+
+    <div class="hero-banner">
+        <h1>《光仔卡牌》H5 活动</h1>
+    <p class="subtitle">腾讯光子「光核实训营」冠军项目</p>
+        <span class="role-tag">策划 / 运营</span>
+    </div>
+
+    <div class="container">
+        <!-- 推广海报 -->
+        <img src="../images/guangzai/poster.jpg" alt="光仔卡牌推广海报" class="poster-img">
+
+        <!-- Section 1: 活动策划与玩法机制设计 -->
+        <div class="section">
+            <h2 class="section-title">活动策划与玩法机制设计</h2>
+        <p>面向光核社区活跃与拉新目标，参与《光仔卡牌》移动端 H5 活动策划与上线运营，围绕 <strong>10 款游戏 IP</strong> 设计 <strong>54 张社区梗卡牌</strong>内容。</p>
+          
+        <p>搭建完整活动路径：<strong>"抽卡—收集—补缺—竞争—分享—回访"</strong></p>
+
+            <div class="mechanism-list">
+  <span class="mechanism-tag">四选三抽卡</span>
+    <span class="mechanism-tag">凑24点返还</span>
+    <span class="mechanism-tag">卡册图鉴</span>
+<span class="mechanism-tag">隐藏彩蛋</span>
+     <span class="mechanism-tag">碎片兑换</span>
+   <span class="mechanism-tag">好友蹭包</span>
+          <span class="mechanism-tag">积分排行榜</span>
+        <span class="mechanism-tag">分享裂变</span>
+            </div>
+
+   <div class="screenshot-gallery">
+       <div class="screenshot-item">
+     <img src="../images/guangzai/login.jpg" alt="登录页面">
+       <div class="caption">登录 / 注册入口</div>
+       </div>
+<div class="screenshot-item">
+           <img src="../images/guangzai/open-pack.jpg" alt="开包页面">
+       <div class="caption">记忆晶核 - 开包抽卡</div>
+     </div>
+       <div class="screenshot-item">
+      <img src="../images/guangzai/card-select.jpg" alt="四选三抽卡">
+           <div class="caption">四选三入册 + 凑24点</div>
+     </div>
+      </div>
+        </div>
+
+        <!-- Section 2: 设计意图与成果 -->
+        <div class="section">
+        <h2 class="section-title">设计意图与成果</h2>
+            <p>通过 H5 免下载入口、首次昵称设置、每日登录抽卡等设计<strong>降低用户参与门槛</strong>；通过"四选三 + 凑 24 点返还"强化单次抽卡的<strong>策略选择与即时反馈</strong>，通过图鉴收集、碎片兑换和隐藏彩蛋<strong>延长用户探索目标</strong>。</p>
+
+      <div class="highlight-box">
+            <p><strong>上线首日数据：</strong></p>
+             <p>90 人参与 &middot; 5,229 次抽卡 &middot; 首次开启参与率 86.58%</p>
+        <p>验证活动入口引流效果与核心机制的短期吸引力。</p>
+     </div>
+
+    <div class="stats-grid">
+    <div class="stat-card">
+ <span class="number">90</span>
+             <span class="label">首日参与人数</span>
+   </div>
+          <div class="stat-card">
+      <span class="number">5,229</span>
+  <span class="label">首日抽卡次数</span>
+            </div>
+       <div class="stat-card">
+ <span class="number">86.58%</span>
+      <span class="label">首次开启参与率</span>
+          </div>
+    <div class="stat-card">
+     <span class="number">54</span>
+  <span class="label">社区梗卡牌数量</span>
+                </div>
+         </div>
+
+            <div class="screenshot-gallery">
+     <div class="screenshot-item">
+ <img src="../images/guangzai/card-album.jpg" alt="卡册图鉴">
+        <div class="caption">卡册图鉴 + 碎片兑换</div>
+                </div>
+          <div class="screenshot-item">
+        <img src="../images/guangzai/tasks.jpg" alt="开包任务">
+           <div class="caption">开包任务系统</div>
+     </div>
+                <div class="screenshot-item">
+             <img src="../images/guangzai/ranking.jpg" alt="排行榜">
+              <div class="caption">积分排行榜</div>
+          </div>
+            </div>
+ </div>
+
+  <!-- Section 3: 数据复盘与优化 -->
+        <div class="section">
+   <h2 class="section-title">独立完成活动数据复盘与优化</h2>
+     <p>活动上线 8 天累计吸引 <strong>149 名用户</strong>参与，人均抽卡约 <strong>70 次</strong>，平均图鉴收集进度达 <strong>45.43%</strong>，彩蛋触发率达 <strong>38.93%</strong>。</p>
+
+   <div class="stats-grid">
+      <div class="stat-card">
+    <span class="number">149</span>
+    <span class="label">8天累计用户</span>
+    </div>
+  <div class="stat-card">
+   <span class="number">~70次</span>
+        <span class="label">人均抽卡</span>
+         </div>
+         <div class="stat-card">
+ <span class="number">45.43%</span>
+        <span class="label">平均图鉴收集</span>
+    </div>
+         <div class="stat-card">
+             <span class="number">38.93%</span>
+        <span class="label">彩蛋触发率</span>
+     </div>
+            </div>
+
+            <p>独立产出活动复盘报告，分析用户参与留存、抽卡行为、图鉴收集、彩蛋触发与分享转化数据，针对问题提出迭代建议：</p>
+
+            <ul class="insight-list">
+       <li>Day 3 后活跃衰减 &rarr; 提出<strong>内容分批解锁</strong>策略</li>
+          <li>用户回流不足 &rarr; 设计<strong>关键节点召回</strong>机制</li>
+        <li>分享裂变规模有限 &rarr; 优化<strong>分享落地页</strong>设计</li>
+   </ul>
+ </div>
+
+        <div class="footer-nav">
+  <a href="../index.html">&larr; 返回首页查看更多项目</a>
+ </div>
+    </div>
+</body>
+</html>

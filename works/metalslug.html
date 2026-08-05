@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>多品类游戏体验 | 马铭远作品集</title>
+    <title>合金弹头：觉醒 - 游戏策划实习 | 马铭远作品集</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -18,17 +18,17 @@
         .navbar__links { display: flex; align-items: center; gap: 28px; list-style: none; }
         .navbar__links a { font-size: 0.88rem; font-weight: 500; color: #4a5568; transition: color 0.2s; }
         .navbar__links a:hover { color: #2d3748; }
-        .article-hero { padding-top: 56px; background: #2c3e50; position: relative; overflow: hidden; }
-        .article-hero__deco { position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); font-size: clamp(5rem, 14vw, 12rem); font-weight: 900; color: rgba(255,255,255,0.04); white-space: nowrap; pointer-events: none; }
+        .article-hero { padding-top: 56px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); position: relative; overflow: hidden; }
+        .article-hero__deco { position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); font-size: clamp(5rem, 14vw, 12rem); font-weight: 900; color: rgba(255,255,255,0.04); white-space: nowrap; pointer-events: none; font-family: 'JetBrains Mono', monospace; }
         .article-hero__inner { max-width: 1200px; margin: 0 auto; padding: 50px 40px 70px; display: grid; grid-template-columns: 260px 1fr; gap: 50px; align-items: start; position: relative; }
         .profile-mini { background: #fff; border-radius: 12px; box-shadow: 0 8px 40px rgba(0,0,0,0.15); padding: 28px 20px 22px; text-align: center; }
-        .profile-mini__avatar { width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 12px; background: linear-gradient(135deg, #a18cd1, #fbc2eb); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; box-shadow: 0 4px 15px rgba(161,140,209,0.3); }
+        .profile-mini__avatar { width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 12px; background: linear-gradient(135deg, #e74c3c, #f39c12); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; box-shadow: 0 4px 15px rgba(231,76,60,0.3); }
         .profile-mini__name { font-size: 1.05rem; font-weight: 700; color: #2d3748; margin-bottom: 4px; }
         .profile-mini__sub { font-size: 0.75rem; color: #a0aec0; font-family: 'JetBrains Mono', monospace; margin-bottom: 10px; }
         .profile-mini__bio { font-size: 0.78rem; color: #718096; line-height: 1.5; margin-bottom: 14px; }
         .profile-mini__social { display: flex; justify-content: center; gap: 12px; margin-bottom: 16px; }
         .profile-mini__social a { width: 30px; height: 30px; border-radius: 50%; background: #f7fafc; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #4a5568; transition: all 0.2s; }
-        .profile-mini__social a:hover { background: #2c3e50; color: #fff; border-color: #2c3e50; }
+        .profile-mini__social a:hover { background: #1a1a2e; color: #fff; border-color: #1a1a2e; }
         .profile-mini__contact { text-align: left; border-top: 1px solid #edf2f7; padding-top: 12px; font-size: 0.72rem; }
         .profile-mini__contact div { display: flex; padding: 3px 0; }
         .profile-mini__contact .label { color: #a0aec0; width: 50px; flex-shrink: 0; }
@@ -37,7 +37,7 @@
         .profile-mini__skills-title { font-size: 0.68rem; color: #a0aec0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
         .profile-mini__tags { display: flex; flex-wrap: wrap; gap: 4px; }
         .profile-mini__tags span { padding: 2px 8px; border-radius: 100px; font-size: 0.65rem; font-weight: 500; background: #edf2f7; color: #4a5568; }
-        .profile-mini__tags span.primary { background: #a18cd1; color: #fff; }
+        .profile-mini__tags span.primary { background: #e74c3c; color: #fff; }
         .article-header { padding-top: 10px; }
         .article-header__label { font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
         .article-header__title { font-size: clamp(1.4rem, 2.8vw, 2rem); font-weight: 700; color: #fff; line-height: 1.4; margin-bottom: 16px; }
@@ -53,7 +53,13 @@
         .article-content ul { padding-left: 20px; margin-bottom: 16px; }
         .article-content li { margin-bottom: 8px; }
         .article-content strong { color: #2d3748; }
-        .highlight-box { background: #f7fafc; border-left: 4px solid #a18cd1; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 20px 0; font-size: 0.88rem; color: #4a5568; }
+        .highlight-box { background: #f7fafc; border-left: 4px solid #e74c3c; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 20px 0; font-size: 0.88rem; color: #4a5568; }
+        .highlight-box--green { border-left-color: #48bb78; }
+        .highlight-box--blue { border-left-color: #4299e1; }
+        .result-tag { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 0.72rem; font-weight: 600; margin: 2px 4px 2px 0; }
+        .result-tag--red { background: #fed7d7; color: #c53030; }
+        .result-tag--green { background: #c6f6d5; color: #276749; }
+        .result-tag--blue { background: #bee3f8; color: #2a4365; }
         .footer { text-align: center; padding: 36px 20px; font-size: 0.78rem; color: #a0aec0; border-top: 1px solid #edf2f7; background: #fff; }
         @media (max-width: 900px) { .article-hero__inner { grid-template-columns: 1fr; padding: 30px 20px 50px; gap: 24px; } .profile-mini { max-width: 300px; margin: 0 auto; } .article-content { margin-left: 0; } .article-body { padding: 30px 20px 60px; } .navbar { padding: 0 20px; } .scroll-indicator { display: none; } }
     </style>
@@ -64,61 +70,81 @@
         <ul class="navbar__links"><li><a href="../index.html">首页</a></li><li><a href="../index.html#works">作品</a></li><li><a href="../index.html#experience">经历</a></li><li><a href="../index.html#contact">联系</a></li></ul>
     </nav>
     <section class="article-hero">
-        <div class="article-hero__deco">GAMING</div>
+        <div class="article-hero__deco">METAL SLUG</div>
         <div class="article-hero__inner">
             <div class="profile-mini">
-                <div class="profile-mini__avatar">&#128126;</div>
+                <div class="profile-mini__avatar">&#128163;</div>
                 <h2 class="profile-mini__name">马铭远</h2>
                 <p class="profile-mini__sub">Game Designer / Creator</p>
                 <p class="profile-mini__bio">因为我们的存在，世界发生了小小的改变。</p>
-                <div class="profile-mini__social"><a href="https://space.bilibili.com/" target="_blank">&#127909;</a><a href="#">&#128187;</a><a href="#">&#128172;</a><a href="mailto:2275390554@qq.com">&#9993;</a></div>
+                <div class="profile-mini__social"><a href="https://space.bilibili.com/265082144" target="_blank">&#127909;</a><a href="https://fall-ma.github.io" target="_blank">&#128187;</a><a href="#">&#128172;</a><a href="mailto:2275390554@qq.com">&#9993;</a></div>
                 <div class="profile-mini__contact">
-                    <div><span class="label">微信:</span><span class="value">mamyhhh</span></div>
-                    <div><span class="label">QQ:</span><span class="value">2275390554</span></div>
+                    <div><span class="label">微信:</span><span class="value">Fall070101</span></div>
                     <div><span class="label">邮箱:</span><span class="value">2275390554@qq.com</span></div>
                 </div>
                 <div class="profile-mini__skills">
-                    <p class="profile-mini__skills-title">游戏品类</p>
-                    <div class="profile-mini__tags"><span class="primary">MOBA</span><span>FPS</span><span>策略</span><span>沙盒</span><span>动作</span><span>体育</span></div>
+                    <p class="profile-mini__skills-title">相关技能</p>
+                    <div class="profile-mini__tags"><span class="primary">关卡策划</span><span>敌兵配置</span><span>数值设计</span><span>系统拆解</span><span>文档输出</span></div>
                 </div>
             </div>
             <div class="article-header">
-                <p class="article-header__label">NEWS LETTER</p>
-                <h1 class="article-header__title">多品类游戏深度体验 - 2000h+ 英雄联盟</h1>
-                <div class="article-header__breadcrumb">HOME / Gaming / Experience</div>
-                <div class="article-header__meta"><span>&#127918; 10年+游戏经历</span><span>&#128126; 全品类覆盖</span></div>
+                <p class="article-header__label">INTERNSHIP EXPERIENCE</p>
+                <h1 class="article-header__title">《合金弹头：觉醒》<br>游戏策划实习</h1>
+                <div class="article-header__breadcrumb">HOME /2026 / Metal Slug: Awakening</div>
+                <div class="article-header__meta"><span>&#128197; 2026</span><span>&#127970; 腾讯天美工作室群</span><span>&#127918; 关卡策划方向</span></div>
                 <span class="scroll-indicator">SCROLL DOWN</span>
             </div>
         </div>
     </section>
     <div class="article-body">
         <div class="article-content">
-            <h2>《多品类游戏深度体验》</h2>
-            <h3>重度体验（500h+）</h3>
+            <div class="highlight-box">负责《合金弹头：觉醒》敌兵战斗单元的配置与落地，独立完成系统拆解分析，并产出多篇流程文档为项目组新人赋能。</div>
+
+            <h2>一、敌兵设计与落地</h2>
+            <h3>工作内容</h3>
             <ul>
-                <li><strong>英雄联盟</strong> — 2000h+，10年电竞赛事观赛经验</li>
-                <li><strong>Minecraft</strong> — 沙盒创造，关卡设计启蒙</li>
-                <li><strong>火影忍者 / 王者荣耀 / 云顶之弈</strong> — MOBA &amp; 自走棋</li>
-                <li><strong>2D/3D 马里奥系列</strong> — 平台跳跃关卡设计经典</li>
+                <li>基于项目现有表格框架，完成<strong>敌兵实例表、行为表</strong>等核心配置</li>
+                <li>协同关卡策划参与<strong>爽玩服第60-66章</strong>的敌兵设计</li>
+                <li>根据组内跑查反馈结果，对部分关卡的<strong>难度与刷怪数量</strong>进行调整</li>
             </ul>
-            <h3>深度体验（300h+）</h3>
+            <h3>成果</h3>
+            <div class="highlight-box--green highlight-box">
+                <span class="result-tag result-tag--green">已验收</span>调整后该章节通过内部跑查验收<br>
+                <span class="result-tag result-tag--green">已合入</span> 配置内容合入主干
+            </div>
+
+            <h2>二、系统拆解与迭代优化</h2>
+            <h3>工作内容</h3>
             <ul>
-                <li><strong>无畏契约</strong> — FPS策略思维</li>
-                <li><strong>明日方舟</strong> — 塔防策略与数值理解</li>
-                <li><strong>FIFA系列</strong> — 体育竞技模拟</li>
-                <li><strong>守望先锋</strong> — 团队配合与角色设计</li>
-                <li><strong>皇室战争</strong> — 卡牌策略与资源管理</li>
-                <li><strong>塞尔达传说系列</strong> — 开放世界与交互设计</li>
+                <li>独立拆解<strong>任务系统架构</strong>，产出结构分析文档</li>
+                <li>结合 CE 测试现场观察与实际体验痛点，输出优化建议</li>
+                <li>涵盖<strong>系统交互流程、任务可见性规则、奖励感知</strong>等方面</li>
+                <li>为后续 S11赛季版本的系统迭代提供设计参考</li>
             </ul>
-            <h3>游戏视野对策划的价值</h3>
-            <p>多品类的深度体验让我能快速理解不同游戏类型的核心乐趣循环，对比不同设计思路的优劣，在策划工作中提供丰富的参考框架。</p>
-            <h3>关键洞察</h3>
+            <h3>成果</h3>
+            <div class="highlight-box--blue highlight-box">
+                <span class="result-tag result-tag--blue">已采纳</span> 4条建议被纳入后续迭代排期
+            </div>
+
+            <h2>三、项目组文档建设与优化</h2>
+            <h3>工作内容</h3>
             <ul>
-                <li><strong>MOBA</strong> — 理解对抗设计、英雄差异化、团队协作机制</li>
-                <li><strong>FPS</strong> — 理解地图设计、武器平衡、经济系统</li>
-                <li><strong>策略</strong> — 理解决策空间、信息设计、博弈深度</li>
-                <li><strong>沙盒</strong> — 理解自由度与引导的平衡、创造性玩法涌现</li>
-                <li><strong>平台跳跃</strong> — 理解关卡节奏、难度曲线、手感调优</li>
+                <li>基于自身从零上手的完整经历，以<strong>新人视角</strong>梳理上手过程中的痛点与信息断层</li>
+                <li>输出《草履虫版敌兵制作流程详解》《新人环境配置SOP》等<strong>5篇流程文档</strong></li>
+                <li>根据后续新人实际使用反馈，持续迭代优化文档内容</li>
+            </ul>
+            <h3>成果</h3>
+            <div class="highlight-box--green highlight-box">
+                <span class="result-tag result-tag--green">已纳入</span> 被组内纳入新人入职参考材料<br>
+                <span class="result-tag result-tag--green">持续迭代</span> 根据新人反馈持续更新
+            </div>
+
+            <h2>核心收获</h2>
+            <ul>
+                <li><strong>工业化流程认知</strong>：理解大型项目的表格驱动配置体系与协作规范</li>
+                <li><strong>体验驱动设计</strong>：从玩家体验出发倒推系统优化方向</li>
+                <li><strong>文档化思维</strong>：将隐性经验显性化，降低团队知识传递成本</li>
+                <li><strong>跨角色协作</strong>：与关卡策划、程序、QA 等多角色协同工作</li>
             </ul>
         </div>
     </div>
