@@ -230,7 +230,6 @@
             height: 88px;
             margin: 0 auto 14px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -240,23 +239,15 @@
             transition: transform 0.3s ease;
         }
 
-        .profile-card__avatar:hover {
-            transform: scale(1.08) rotate(3deg);
-        }
-
-        .profile-card__avatar::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.2) 100%);
+        .profile-card__avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             border-radius: 50%;
         }
 
-        .avatar-svg {
-            width: 52px;
-            height: 52px;
-            position: relative;
-            z-index: 2;
+        .profile-card__avatar:hover {
+            transform: scale(1.08) rotate(3deg);
         }
 
         .profile-card__name {
@@ -406,7 +397,10 @@
         }
 
         .hero__title .highlight {
-            color: var(--accent-yellow);
+            background: linear-gradient(90deg, #f6e05e, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: 700;
         }
 
@@ -505,6 +499,19 @@
             color: #fff;
             border-color: var(--accent);
             box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            position: relative;
+        }
+
+        .filter-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 3px;
+            border-radius: 2px;
+            background: var(--accent-yellow);
         }
 
         .filter-tab__count {
@@ -581,6 +588,15 @@
             box-shadow: var(--shadow-card-hover);
         }
 
+        .work-card:hover .work-card__cover-img {
+            transform: scale(1.03);
+            transition: transform 0.4s ease;
+        }
+
+        .work-card:hover .glass-cover {
+            filter: brightness(1.08);
+        }
+
         .work-card__cover {
             width: 100%;
     height: 200px;
@@ -592,6 +608,7 @@
     height: 100%;
         object-fit: cover;
             object-position: top center;
+            transition: transform 0.4s ease;
       }
 
         /* ===== Glassmorphism Covers ===== */
@@ -711,6 +728,21 @@
             border-radius: 100px;
             font-weight: 500;
             border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .work-card[data-category="internship"] .work-card__tag {
+            background: rgba(59, 130, 246, 0.7);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .work-card[data-category="project"] .work-card__tag {
+            background: rgba(139, 92, 246, 0.7);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .work-card[data-category="other"] .work-card__tag {
+            background: rgba(107, 114, 128, 0.6);
+            border-color: rgba(107, 114, 128, 0.3);
         }
 
         .work-card__body { padding: 18px 22px 22px; }
@@ -835,19 +867,11 @@
             <!-- Left: Profile Card -->
             <div class="profile-card">
                 <div class="profile-card__avatar">
-                    <!-- SVG gamepad silhouette avatar -->
-                    <svg class="avatar-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15 32C15 32 12 28 12 24C12 20 14 17 18 16C18 14 20 12 24 12C28 12 30 14 30 16C34 17 36 20 36 24C36 28 33 32 33 32" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                        <circle cx="19" cy="24" r="1.5" fill="white"/>
-                        <circle cx="29" cy="24" r="1.5" fill="white"/>
-                        <path d="M21 28C21 28 22.5 30 24 30C25.5 30 27 28 27 28" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                        <path d="M16 36L18 33M32 36L30 33" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                        <rect x="14" cy="36" width="20" height="2" rx="1" fill="rgba(255,255,255,0.3)" y="36"/>
-                    </svg>
+                    <img src="avatar.jpg" alt="马铭远">
                 </div>
                 <h1 class="profile-card__name">马铭远</h1>
-                <p class="profile-card__subtitle">Game Designer / Creator</p>
-                <p class="profile-card__bio">19岁 | 北京外国语大学 | 朝鲜语（半岛研究）</p>
+                <p class="profile-card__subtitle">Game Design / Game Operations</p>
+                <p class="profile-card__bio">北外在读 | 腾讯天美实习 | 多段项目经历</p>
 
                 <div class="profile-card__social">
                     <a href="https://fall-ma.github.io" title="GitHub" target="_blank">
@@ -886,34 +910,27 @@
                 <div class="profile-card__skills">
                     <p class="skills-label">个人技能:</p>
                     <div class="skills-group">
-                        <p class="skills-group__title">语言能力：</p>
+                        <p class="skills-group__title">策划核心：</p>
                         <div class="skills-tags">
-                            <span class="skill-tag skill-tag--primary">韩语母语级</span>
-                            <span class="skill-tag skill-tag--accent">英语优秀</span>
+                            <span class="skill-tag skill-tag--primary">系统策划</span>
+                            <span class="skill-tag skill-tag--primary">玩法策划</span>
+                            <span class="skill-tag skill-tag--primary">关卡策划</span>
                         </div>
                     </div>
                     <div class="skills-group">
-                        <p class="skills-group__title">专业技能：</p>
+                        <p class="skills-group__title">运营增长：</p>
                         <div class="skills-tags">
-                            <span class="skill-tag">游戏系统设计</span>
-                            <span class="skill-tag">用户研究</span>
-                            <span class="skill-tag">数据分析</span>
-                        </div>
-                    </div>
-                    <div class="skills-group">
-                        <p class="skills-group__title">内容创作：</p>
-                        <div class="skills-tags">
-                            <span class="skill-tag">视频制作</span>
-                            <span class="skill-tag">文案策划</span>
-                            <span class="skill-tag">社群运营</span>
+                            <span class="skill-tag">用户增长</span>
+                            <span class="skill-tag">产品运营</span>
+                            <span class="skill-tag">活动策划</span>
                         </div>
                     </div>
                     <div class="skills-group">
                         <p class="skills-group__title">工具：</p>
                         <div class="skills-tags">
-                            <span class="skill-tag">Excel</span>
-                            <span class="skill-tag">AI大模型</span>
-                            <span class="skill-tag">剪辑软件</span>
+                            <span class="skill-tag">Codex</span>
+                            <span class="skill-tag">WorkBuddy</span>
+                            <span class="skill-tag">Office</span>
                         </div>
                     </div>
                 </div>
@@ -923,8 +940,8 @@
             <div class="hero__content">
                 <div class="hero__typing" id="typingText"></div>
                 <h2 class="hero__title">
-                    用<span class="highlight">数据</span>与<span class="highlight">洞察</span><br>
-                    创造有趣的<span class="highlight">游戏体验</span>
+                    当你想做一件能<span class="highlight">打动自己</span>的事时<br>
+                    它大概率也能<span class="highlight">打动</span>和你相似的人
                 </h2>
                 <div class="hero__breadcrumb">
                     HOME &nbsp;/&nbsp; PORTFOLIO &nbsp;/&nbsp; INDEX
@@ -983,7 +1000,7 @@
            <div class="work-card__body">
       <p class="work-card__category">腾讯光子「光核实训营」冠军项目</p>
  <h3 class="work-card__title">《光仔卡牌》活动策划与运营</h3>
-        <p class="work-card__desc">设计54张社区梗卡牌，搭建抽卡-收集-裂变完整活动路径，首日参与率86.58%</p>
+        <p class="work-card__desc">腾讯光核实训营冠军，从0到1完成卡牌玩法闭环，首日参与率86.58%</p>
      <div class="work-card__meta">
         <span>2026</span>
                <span>&#127183; 149人参与</span>
@@ -1072,7 +1089,7 @@
                     <div class="work-card__body">
                         <p class="work-card__category">游戏运营 / 增长运营 / 社区运营</p>
                         <h3 class="work-card__title">《皇室战争》国服用户增长运营方案</h3>
-                        <p class="work-card__desc">社交裂变+宝可梦IP联动+创作者社区电竞三条解法，目标1亿MAU</p>
+                <p class="work-card__desc">三条增长解法：社交裂变 × IP联动 × 内容社区，目标1亿MAU</p>
                         <div class="work-card__meta">
                             <span>2026</span>
                             <span>&#128065; 个人项目</span>
@@ -1083,13 +1100,13 @@
     <!-- Card: 虎扑实习 - 实习 -->
              <a href="works/hupu.html" class="work-card fade-up" data-category="internship">
             <div class="work-card__cover">
-        <img class="work-card__cover-img" src="hupu-cover.jpg" alt="虎扑实习">
+        <img class="work-card__cover-img" src="hupu-cover.jpg" alt="虎扑实习" style="object-position: center center; object-fit: contain; background: #d32f2f;">
    <span class="work-card__tag">用户研究</span>
        </div>
  <div class="work-card__body">
      <p class="work-card__category">虎扑（上海）文化传播</p>
  <h3 class="work-card__title">用户研究观察员 - 趋势洞察与数据分析</h3>
-          <p class="work-card__desc">独立完成趋势研究报告，3份被采纳用于用户增长策略</p>
+          <p class="work-card__desc">3份报告被采纳用于增长策略，日均数据追踪与趋势洞察</p>
      <div class="work-card__meta">
            <span>2025.10-12</span>
         <span>&#128196; 8份报告</span>
