@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《皇室战争》国服用户增长运营方案 | 马铭远作品集</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+
+        /* Navbar */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            height: 56px; display: flex; align-items: center; justify-content: space-between;
+            padding: 0 40px; background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+        .navbar__brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1rem; color: #2d3748; }
+        .navbar__brand-icon { font-size: 1.3rem; }
+        .navbar__links { display: flex; align-items: center; gap: 28px; list-style: none; }
+        .navbar__links a { font-size: 0.88rem; font-weight: 500; color: #4a5568; transition: color 0.2s; }
+        .navbar__links a:hover { color: #2d3748; }
+
+        /* Hero banner */
+        .article-hero {
+            padding-top: 56px; background: #1a1a2e; position: relative; overflow: hidden;
+        }
+        .article-hero__deco {
+            position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
+            font-size: clamp(5rem, 14vw, 12rem); font-weight: 900;
+            color: rgba(255,255,255,0.04); white-space: nowrap; pointer-events: none;
+        }
+        .article-hero__inner {
+            max-width: 1200px; margin: 0 auto; padding: 50px 40px 70px;
+            display: grid; grid-template-columns: 260px 1fr; gap: 50px; align-items: start;
+            position: relative;
+        }
+
+        /* Profile card (mini version) */
+        .profile-mini {
+            background: #fff; border-radius: 12px; box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+            padding: 28px 20px 22px; text-align: center;
+        }
+        .profile-mini__avatar {
+            width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex; align-items: center; justify-content: center; font-size: 2.2rem;
+            box-shadow: 0 4px 15px rgba(102,126,234,0.3);
+        }
+        .profile-mini__name { font-weight: 700; font-size: 1rem; color: #2d3748; }
+        .profile-mini__subtitle { font-size: 0.72rem; color: #a0aec0; font-family: 'JetBrains Mono', monospace; margin-top: 2px; }
+        .profile-mini__bio { font-size: 0.78rem; color: #718096; margin-top: 10px; line-height: 1.5; }
+        .profile-mini__back {
+            display: inline-flex; align-items: center; gap: 6px;
+            margin-top: 16px; padding: 8px 16px; border-radius: 8px;
+            background: #f7fafc; border: 1px solid #e2e8f0;
+            font-size: 0.78rem; color: #4a5568; font-weight: 500; transition: all 0.2s;
+        }
+        .profile-mini__back:hover { background: #edf2f7; transform: translateX(-2px); }
+
+        /* Article meta */
+        .article-meta { color: #fff; }
+        .article-meta__tag {
+            display: inline-block; padding: 4px 12px; border-radius: 20px;
+            background: rgba(251, 146, 60, 0.2); color: #fb923c;
+            font-size: 0.72rem; font-weight: 500; margin-bottom: 14px;
+        }
+        .article-meta__tag--green {
+            background: rgba(16, 185, 129, 0.2); color: #6ee7b7; margin-left: 8px;
+        }
+        .article-meta__title { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 900; line-height: 1.25; margin-bottom: 14px; }
+        .article-meta__desc { font-size: 0.92rem; color: #cbd5e0; line-height: 1.7; margin-bottom: 20px; }
+        .article-meta__info { display: flex; flex-wrap: wrap; gap: 14px; font-size: 0.78rem; color: #a0aec0; }
+        .article-meta__info-item { display: inline-flex; align-items: center; gap: 4px; }
+
+        /* Content area */
+        .content-area {
+            max-width: 820px; margin: -30px auto 0; padding: 0 20px 80px; position: relative; z-index: 2;
+        }
+        .section-block {
+            background: #fff; border-radius: 14px; padding: 32px; margin-bottom: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .section-block h2 {
+            font-size: 1.25rem; font-weight: 700; color: #2d3748;
+            margin-bottom: 18px; padding-bottom: 12px;
+            border-bottom: 1px solid #edf2f7;
+        }
+        .section-block h3 {
+            font-size: 1.05rem; font-weight: 600; color: #4a5568;
+            margin: 20px 0 10px;
+        }
+        .section-block p {
+            font-size: 0.9rem; color: #4a5568; line-height: 1.9; margin-bottom: 12px;
+        }
+        .section-block ul {
+            padding-left: 20px; margin-bottom: 12px;
+        }
+        .section-block li {
+            font-size: 0.9rem; color: #4a5568; line-height: 1.9; margin-bottom: 8px;
+        }
+        .highlight-box {
+            background: #f7fafc; border-left: 4px solid #fb923c;
+            padding: 16px 20px; border-radius: 0 8px 8px 0;
+            margin: 16px 0; font-size: 0.88rem; color: #4a5568;
+        }
+
+        /* Collapsible doc */
+        .doc-section {
+            margin-top: 12px;
+        }
+        .doc-section details {
+            background: #fff; border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow: hidden; margin-bottom: 16px;
+        }
+        .doc-section summary {
+            padding: 18px 24px; cursor: pointer;
+            font-size: 1rem; font-weight: 600; color: #2d3748;
+            display: flex; align-items: center; gap: 10px;
+            transition: background 0.2s;
+            list-style: none;
+        }
+        .doc-section summary::-webkit-details-marker { display: none; }
+        .doc-section summary:hover { background: #f7fafc; }
+        .doc-section summary .toggle-label {
+            font-size: 0.75rem; padding: 2px 8px;
+            background: rgba(251, 146, 60, 0.1);
+            border: 1px solid rgba(251, 146, 60, 0.3);
+            border-radius: 4px; color: #fb923c;
+        }
+        .doc-section details[open] summary .toggle-label {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.3);
+            color: #6366f1;
+        }
+        .doc-content {
+            padding: 24px; border-top: 1px solid #edf2f7;
+            font-size: 0.88rem; color: #4a5568; line-height: 2;
+            white-space: pre-wrap; word-wrap: break-word;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center; padding: 40px 20px 30px;
+            font-size: 0.78rem; color: #a0aec0;
+        }
+
+        @media (max-width: 900px) {
+            .article-hero__inner { grid-template-columns: 1fr; padding: 30px 20px 50px; }
+            .profile-mini { display: none; }
+        }
+        @media (max-width: 640px) {
+            .navbar { padding: 0 16px; }
+            .content-area { padding: 0 12px 60px; }
+            .section-block { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a class="navbar__brand" href="../index.html">
+            <span class="navbar__brand-icon">&#9776;</span>
+            <span>马铭远的作品集</span>
+        </a>
+        <ul class="navbar__links">
+            <a href="../index.html">&#8592; 返回首页</a>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <header class="article-hero">
+        <div class="article-hero__deco">CLASH ROYALE</div>
+        <div class="article-hero__inner">
+            <div class="profile-mini">
+                <div class="profile-mini__avatar">&#128081;</div>
+                <div class="profile-mini__name">马铭远</div>
+                <div class="profile-mini__subtitle">GAME OPERATIONS</div>
+                <div class="profile-mini__bio">游戏运营 / 增长运营 / 社区运营</div>
+                <a class="profile-mini__back" href="../index.html">&#8592; 返回首页</a>
+            </div>
+            <div class="article-meta">
+                <span class="article-meta__tag">游戏运营 / 增长运营 / 社区运营</span>
+                <h1 class="article-meta__title">《皇室战争》国服用户增长运营方案</h1>
+                <p class="article-meta__desc">针对国服用户流失、老玩家回流不足和新玩家入坑门槛高的问题，拆解卡牌等级差距、天梯挫败感、环境变化和社交传播弱等增长阻碍，提出"社交裂变、概念 IP 联动、内容社区"三条解法。</p>
+                <div class="article-meta__info">
+                    <span class="article-meta__info-item">2026</span>
+                    <span class="article-meta__info-item">&#128065; 个人项目</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="content-area">
+        <!-- Section 1 -->
+        <div class="section-block">
+            <h2>解法一：深度嵌入腾讯社交生态，用户裂变带动新老玩家入坑</h2>
+            <p>设计微信/QQ社交生态嵌入方案，规划好友邀请、2v2/友谊赛奖励、战报海报分享、小程序快速对战、宝箱加速券和金币加成等机制，降低下载与上手门槛，提升回流和分享动力。</p>
+            <div class="highlight-box">
+                核心思路：利用微信/QQ的社交关系链，将皇室战争从"单人竞技"转变为"社交竞技"，通过社交裂变机制同时解决"新玩家入坑难"和"老玩家回归难"两大增长瓶颈。
+            </div>
+            <h3>具体措施</h3>
+            <ul>
+                <li><strong>活动拉新/拉老</strong>：通过给予一定数量的奖励，成功拉新/拉老可领取基础奖励，后续通过2v2、友谊赛等社交对战确保留存</li>
+                <li><strong>微信/QQ小程序降低门槛</strong>：好友直接邀请对战，在小程序内进行，跳过下载，支持观战、弹幕、送花</li>
+                <li><strong>精准投放</strong>：依托微信/QQ大数据，锁定玩过CR的玩家或有好友正在玩CR的用户群体</li>
+                <li><strong>新老玩家门槛降低</strong>：提供特定经典阵容的体验卡等，有效提高新老玩家的游玩体验</li>
+                <li><strong>社交分享激励</strong>：3皇冠胜利或开出传奇卡自动生成精美战报海报，分享后获得宝箱加速券或金币加成</li>
+            </ul>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section-block">
+            <h2>解法二：跨界IP联动，拓展用户边界</h2>
+            <p>策划"宝可梦 × 皇室战争"概念联动活动，围绕联动角色包装、训练家挑战、精灵球宝箱、塔皮肤碎片和好友赠礼设计活动链路，用IP话题扩大潜在用户触达。</p>
+            <div class="highlight-box">
+                选择宝可梦作为联动IP：画风不突兀，全球有巨量粉丝，同为策略游戏对宝可梦玩家吸引力强，兼顾破圈与核心用户认可。
+            </div>
+            <h3>联动皮肤设计（核心）</h3>
+            <ul>
+                <li><strong>皮卡丘 × 雷电法师</strong>：出场眩晕+闪电攻击 vs 十万伏特，最破圈形象，吸引大量宝可梦IP爱好者</li>
+                <li><strong>炽焰咆哮虎 × 巨人</strong>：前排坦克+高耐久 vs 摔角手原型，核心玩家群体中拥有恐怖影响力和号召力</li>
+            </ul>
+            <h3>限时挑战活动</h3>
+            <p>开放"宝可梦训练家挑战"模式，预设卡组通关获得主题表情、塔皮肤碎片。累计登录、完成对战任务可兑换"精灵球"宝箱。</p>
+            <h3>付费礼包与传播激励</h3>
+            <p>上架皮肤礼包附带专属塔皮肤"宝可梦中心"，获得皮肤后自动生成对战高光海报，设置"好友赠礼"功能利用社交链传播。</p>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="section-block">
+            <h2>解法三：创作者+社区+电竞，内容吸引玩家</h2>
+            <p>搭建"创作者造梗、社区传播、电竞放大"的内容运营框架，规划主播扶持、B站/抖音话题挑战、投稿激励、精彩时刻墙和高校赛等玩法，补足社区内容供给。</p>
+            <div class="highlight-box">
+                三层结构：创作者造梗（主播/UP主持续产出高质量内容）&#8594; 社区传播（话题挑战将普通玩家转化为二次传播者）&#8594; 电竞放大（从顶端赛事下沉到人人可参与的全民赛事）
+            </div>
+            <h3>创作者分层扶持</h3>
+            <ul>
+                <li>头部主播（5-10人）：签约独家直播+定期策划节目</li>
+                <li>腰部UP主（20-30人）：流量扶持+创作基金</li>
+                <li>潜力玩家（不限）：按播放量分成的创作激励计划</li>
+                <li>官方每周发布热点选题建议+创作工具包（录像导出、高光自动剪辑、素材库）</li>
+            </ul>
+            <h3>社区互动机制</h3>
+            <ul>
+                <li>每月在B站/抖音发起固定话题挑战，周冠军获限定表情、塔皮肤碎片</li>
+                <li>游戏内"精彩时刻"展示墙收录优秀作品</li>
+                <li>社区贡献值体系+专属勋章、边框激励</li>
+            </ul>
+            <h3>全民电竞</h3>
+            <ul>
+                <li>主播/UP主邀请赛：整活卡组大战、观众投票禁用卡牌</li>
+                <li>粉丝战队系统+赛季积分+线下总决赛</li>
+                <li>城市/高校赛下沉：联合网吧、高校电竞社举办</li>
+                <li>赛事二创奖：鼓励回顾、采访、名场面盘点</li>
+            </ul>
+        </div>
+
+        <!-- Full Document -->
+        <div class="doc-section">
+            <details>
+                <summary>
+                    <span class="toggle-label">展开</span>
+                    《皇室战争》如何做到1亿MAU — 完整方案原文
+                </summary>
+                <div class="doc-content">《皇室战争》如何做到1亿MAU
+
+解法一：深度嵌入腾讯社交生态，用户裂变带动新老玩家入坑
+
+背景：当前《皇室战争》国服面临的核心增长瓶颈为，用户不断流失，很多的老玩家没有回坑的动力，同时新玩家入坑动力不足。
+
+游戏上线多年，卡牌池深、等级体系复杂，新玩家面对漫长的养成线和天梯中被高等级卡组碾压的体验，入坑门槛和心理门槛双高。很多潜在用户在下载后第一周内就会因为"打不过老玩家""卡牌太少""不知道练什么"而流失。缺少朋友带玩的情况下，单人匹配的挫败感远大于成就感。
+
+弃坑的老玩家，即使被版本更新或情怀驱动想要回归，也常常发现自己的卡组已经跟不上环境，英雄卡缺失、卡等落后、不熟悉新卡和新机制。回坑的成本过高。而目前游戏内对回归玩家的激励较少，无法留住这部分玩家，同时单人游玩的体验也比较一般。
+
+核心思路：利用微信/QQ的社交关系链，将皇室战争从"单人竞技"转变为"社交竞技"，实现用户增长，从而增加月活。
+
+目标：为达到1亿的MAU，基于上述背景，本解法的核心目标是通过社交裂变机制，同时解决"新玩家入坑难"和"老玩家回归难"两大增长瓶颈。
+
+具体措施：
+
+活动拉新/拉老：开启一个活动，通过给予一定数量的奖励（须有较强的吸引力），若成功拉新/拉老，则可以领取基础奖励，通过后续的一系列活动确保留存，如：与好友一起玩一定数量的2v2，或者友谊赛则可以领取一定的奖励。（注：需设置一定的防"刷钱"机制，如：2v2必须要求有胜场，防止挂机，防止用小号或者其他方式恶意"刷钱"。）
+
+微信/QQ小程序降低门槛：微信/QQ好友直接邀请对战，可以在小程序内进行，跳过了下载游戏这一阶段，支持观战、弹幕、送花。
+
+精准投放：依托微信/QQ大数据，进行广告的精准投放，目标用户锁定为之前玩过CR的玩家，或有好友正在玩CR的用户群体。
+
+对于新老玩家的门槛降低：通过一系列方式，降低新老玩家的上手门槛，如：提供特定经典阵容的体验卡等，有效提高新老玩家的游玩体验，增加留存意愿。注：给新老玩家的福利要充分考虑核心玩家的情感，避免出现核心玩家因福利过多产生被背刺的感觉。
+
+社交分享激励，增加分享意愿：每次3皇冠胜利或开出传奇卡，自动生成精美战报海报，分享到朋友圈/群聊后，可获得宝箱加速券或金币加成，从而提高玩家的分享意愿。
+
+预期成果：通过一系列活动，吸引新玩家入坑，老玩家回坑，活跃用户中新老玩家的比率明显上升，提高MAU
+
+解法二：跨界IP联动，拓展用户边界
+
+背景：《皇室战争》国服当前用户增长乏力，新用户获取成本高，老用户活跃度依赖版本更新节奏。头部游戏产品普遍通过IP联动实现破圈——例如《堡垒之夜》与漫威、《PUBG M》与《咒术回战》，均在短期内显著拉升新增和回流。然而，皇室战争过去在国服的IP联动尝试较少，缺乏与游戏策略调性深度契合、既能撬动大众情怀又能打动核心玩家的内容合作。
+
+核心思路：通过和热门ip联动，拓展用户边界，通过吸引该ip的粉丝入坑与喜爱此ip的老玩家回坑，实现用户增长，从而提高月活。
+
+注意事项：由于《皇室战争》本身美术与玩法的特定性，所以选择ip联动时需要考虑的因素更多，既要保证联动ip拥有较高的知名度，同时也要保证该ip的美术风格与设定不能与CR有过大的反差。（如：若选择与动漫联动，避免选择画风华丽/写实的暴力战斗主题动画，哪怕这个动画的热度很高，要保障整体游戏风格的一致性。例如：《进击的巨人》）综合以上注意事项，该解法拟选用《宝可梦》作为联动的ip（宝可梦画风并不突兀，同时在全世界有着巨量的粉丝，同时作为同样的策略游戏对于宝可梦玩家的吸引力也非常强）
+
+目标：借助宝可梦IP的全球影响力，通过高契合度的皮肤设计（兼顾破圈角色与核心玩家认可角色），配合限时活动与社交传播，实现"新增用户涌入+老玩家回流+核心用户付费"三重目标。
+
+具体措施：
+
+联动皮肤设计（核心）
+
+拟推出两款限定皮肤，兼顾破圈与核心用户认可：
+
+1.皮卡丘联动雷电法师，雷电法师核心机制为出场眩晕+闪电攻击；皮卡丘标志技能"十万伏特"，同样以雷电和麻痹为特点。同时作为宝可梦知名度最高，最破圈的形象，能够很好的吸引到大量宝可梦ip的爱好者，也能够提高联动活动在社交媒体传播中的影响力。
+
+2.炽焰咆哮虎联动巨人，巨人是前排坦克，身材高大、以较高的耐久和一定的伤害闻名；炽焰咆哮虎是以摔角手为原型的火/恶属性宝可梦，体型壮硕、以耐久和全能性在核心玩家中具有超高人气。咆哮虎作为宝可梦对战的超热门宝可梦，在核心玩家群体中拥有恐怖的影响力和号召力，这个角色的联动能够很好的吸引到专注宝可梦对战的策略对战爱好玩家，作为同样的游戏品类，CR凭借过硬的本身的游戏素质，是具有强大的吸引力，同时该类玩家的留存率会很高，更能提高MAU。
+
+限时挑战活动
+
+开放"宝可梦训练家挑战"模式，玩家使用预设卡组（包含两款联动皮肤对应的卡牌）通关，获得宝可梦主题表情、塔皮肤碎片。累计登录、完成对战任务可兑换"精灵球"宝箱，开出联动表情、金币等。
+
+付费礼包与传播激励
+
+上架两款皮肤礼包（可单独或打包购买），附带专属塔皮肤"宝可梦中心"。玩家获得皮肤后自动生成对战高光海报，分享到社交平台可参与抽奖（实体宝可梦玩偶）。同时设置"好友赠礼"功能，可购买皮肤赠送给好友，利用社交链传播。
+
+预期成果：通过与全球热门ip联动，提高《皇室战争》的知名度和影响力，丰富游戏内容生态，同时吸引该ip的粉丝，增加活跃用户，从而提高MAU。
+
+解法三：创作者+社区+电竞，内容吸引玩家
+
+背景：2025-2026年，《皇室战争》外服迎来爆发式增长，核心驱动力并非版本更新，而是创作者生态的集体爆发：顶流主播Jynxzi以"98连胜冲击15000杯"制造现象级直播效果，单月新增18万付费订阅；"Sneaky Golem"等玩家自创梗在TikTok形成病毒传播。反观国服，内容生态长期依赖官方单向输出，KOL与玩家社区之间缺乏有效连接，电竞体系虽已建立（如CRCC中国冠军杯），但大众参与感弱，普通玩家与职业赛事之间存在明显断层。新玩家因缺乏内容吸引而入坑意愿低，老玩家因社区活跃度不足而流失。因此，需要一套以创作者为核心、社区为土壤、电竞为帮手的立体内容生态，驱动用户增长与活跃。
+
+核心思路：打造"创作者造梗→ 社区传播 → 电竞放大"的内容生态。
+
+第一级：扶持创作者（主播/UP主/攻略作者）持续产出高质量内容（整活、教学、赛事二创），制造可传播的梗和名场面。
+
+第二级：激活社区互动（B站、抖音、TapTap），通过话题挑战、用户投稿、弹幕互动将普通玩家转化为内容消费者和二次传播者。
+
+第三级：将电竞体系从"顶端职业赛事"下沉到"人人可参与的全民赛事"（重点关注高校电竞），并让创作者深度参与赛事解说、表演赛、战队组建，使赛事成为内容生态的爆发节点，反哺游戏热度。
+
+目标：通过这三层的内容驱动，提高玩家的活跃度，从而提高MAU
+
+具体措施：
+
+创作者分层扶持与内容流程化：
+
+签约创作者矩阵：划分三个层级——头部主播（5-10人，签约独家直播+定期策划节目）、腰部UP主（20-30人，提供流量扶持+创作基金）、潜力玩家（不限，通过"创作激励计划"按播放量分成）。
+
+内容选题库：官方每周发布"热点选题建议"（如版本阵容推荐、反套路卡组、搞笑时刻合集），降低创作门槛。
+
+创作工具包：提供游戏内录像导出、高光自动剪辑、官方素材库（卡牌立绘、特效动画），方便创作者制作高质量视频。
+
+造梗运营：官方主动挖掘并放大社区中出现的趣味玩法（类似"Sneaky Golem"），通过二次创作、表情包、官方账号转发，将其包装成梗，形成自传播。
+
+社区互动机制升级：
+
+话题挑战赛：每月在B站/抖音发起固定话题（如#皇室战争神操作#），用户上传自己的对局录像，按点赞量排名，周冠军获得游戏内限定表情、塔皮肤碎片。优秀作品由官方账号转发，并收录至游戏内"精彩时刻"展示墙。
+
+社区荣誉体系：在游戏内个人资料页展示"社区贡献值"（创作内容数量、点赞数、话题挑战参与次数），达到一定等级可解锁专属勋章、边框，激励玩家持续产出。
+
+全民电竞与创作者深度结合：
+
+创作者联赛：每季度举办"主播/UP主邀请赛"，邀请8-16名创作者分两队进行对抗（可模仿LOL全明星赛制，如"整活卡组大战""反向冲杯"等娱乐模式）。比赛在官方直播间及主播个人直播间同步播出，观众可参与竞猜、投票影响比赛规则（如"观众票选禁用卡牌"）。赛后剪辑精彩片段二次传播。
+
+社区战队计划：鼓励创作者组建自己的"粉丝战队"，在游戏内开设战队系统。战队成员可通过每日对战积累"战队积分"，赛季末积分最高的几支战队可获得线下总决赛门票及与职业选手交手的机会。
+
+全民赛事下沉：依托腾讯电竞的赛事授权系统，联合城市网吧、高校电竞社举办"皇室战争城市/高校赛"。创作者可担任赛事推广大使，前往线下与玩家互动、教学，并将赛事过程制作成vlog，进行二次传播。
+
+赛事二创激励：每次CRCC或大型比赛期间，设立"赛事二创奖"，鼓励创作者制作赛事回顾、选手采访、名场面盘点等视频。优秀作品给予现金奖励+官方首页推荐位。
+
+预期成果：通过一系列组合拳，提高内容的吸引力，通过优质的内容与切身可及的赛事，吸引更多的玩家加入到《皇室战争》的内容生态体系，从而提高MAU</div>
+            </details>
+        </div>
+
+        <!-- Toggle script -->
+        <script>
+            document.querySelectorAll('.doc-section details').forEach(d => {
+                d.addEventListener('toggle', () => {
+                    const label = d.querySelector('.toggle-label');
+                    if (label) label.textContent = d.open ? '收起' : '展开';
+                });
+            });
+        </script>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>马铭远 - 游戏运营 / 增长运营 / 社区运营</p>
+    </footer>
+</body>
+</html>
